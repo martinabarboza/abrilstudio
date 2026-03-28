@@ -1,0 +1,2597 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="Abril Studio — Diseño Gráfico. Identidad visual, branding y comunicación visual."
+    />
+    <title>Abril Studio — Diseño Gráfico</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Raleway:wght@400;600;700;800&family=Poppins:ital,wght@0,400;0,600;1,400;1,600&family=Work+Sans:wght@300;400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      *,
+      *::before,
+      *::after {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+      }
+
+      :root {
+        --red: #de3a28;
+        --black: #000000;
+        --white: #ffffff;
+        --gray-50: #f8f8f8;
+        --gray-100: #f0f0f0;
+        --gray-200: #e5e5e5;
+        --gray-300: #d4d4d4;
+        --gray-400: #a3a3a3;
+        --gray-500: #737373;
+        --gray-600: #525252;
+        --gray-700: #404040;
+        --gray-800: #262626;
+        --gray-900: #171717;
+        --font-main: "Work Sans", sans-serif;
+        --font-heading: "Raleway", sans-serif;
+        --font-accent: "Poppins", sans-serif;
+      }
+
+      html {
+        scroll-behavior: smooth;
+      }
+
+      body {
+        font-family: var(--font-main);
+        background: var(--white);
+        color: var(--black);
+        overflow-x: hidden;
+      }
+
+      ::-webkit-scrollbar {
+        width: 5px;
+      }
+      ::-webkit-scrollbar-track {
+        background: #f1f1f1;
+      }
+      ::-webkit-scrollbar-thumb {
+        background: var(--red);
+        border-radius: 3px;
+      }
+
+      /* ─── UTILITIES ─── */
+      .container {
+        max-width: 1100px;
+        margin: 0 auto;
+        padding: 0 24px;
+      }
+      .section-label {
+        font-family: var(--font-main);
+        font-size: 10px;
+        font-weight: 700;
+        letter-spacing: 0.4em;
+        text-transform: uppercase;
+        color: var(--red);
+        display: block;
+        margin-bottom: 16px;
+      }
+      .section-title {
+        font-family: var(--font-heading);
+        font-weight: 600;
+        font-size: clamp(2rem, 5vw, 3rem);
+        letter-spacing: 0.02em;
+        line-height: 1.15;
+        color: var(--black);
+      }
+      .section-title.white {
+        color: var(--white);
+      }
+
+      /* ─── ANIMATIONS ─── */
+      @keyframes fadeUp {
+        from {
+          opacity: 0;
+          transform: translateY(40px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+      @keyframes fadeIn {
+        from {
+          opacity: 0;
+        }
+        to {
+          opacity: 1;
+        }
+      }
+      @keyframes scaleIn {
+        from {
+          opacity: 0;
+          transform: scale(0.92);
+        }
+        to {
+          opacity: 1;
+          transform: scale(1);
+        }
+      }
+      @keyframes bounce {
+        0%,
+        100% {
+          transform: translateY(0);
+        }
+        50% {
+          transform: translateY(8px);
+        }
+      }
+      @keyframes barFill {
+        from {
+          width: 0;
+        }
+      }
+      @keyframes slideRight {
+        from {
+          transform: scaleX(0);
+        }
+        to {
+          transform: scaleX(1);
+        }
+      }
+      @keyframes blurReveal {
+        from {
+          opacity: 0;
+          filter: blur(12px);
+          transform: translateY(-20px);
+        }
+        to {
+          opacity: 1;
+          filter: blur(0);
+          transform: translateY(0);
+        }
+      }
+
+      .reveal {
+        opacity: 0;
+        transform: translateY(40px);
+        transition:
+          opacity 0.8s ease,
+          transform 0.8s ease;
+      }
+      .reveal.visible {
+        opacity: 1;
+        transform: translateY(0);
+      }
+      .reveal-delay-1 {
+        transition-delay: 0.1s;
+      }
+      .reveal-delay-2 {
+        transition-delay: 0.2s;
+      }
+      .reveal-delay-3 {
+        transition-delay: 0.3s;
+      }
+      .reveal-delay-4 {
+        transition-delay: 0.4s;
+      }
+
+      /* ─── NAVBAR ─── */
+      #navbar {
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        z-index: 100;
+        padding: 16px 0;
+        transition:
+          background 0.3s,
+          box-shadow 0.3s,
+          border-color 0.3s;
+        animation: fadeIn 0.6s ease both;
+      }
+      #navbar.scrolled {
+        background: rgba(255, 255, 255, 0.96);
+        backdrop-filter: blur(12px);
+        box-shadow: 0 1px 0 var(--gray-200);
+      }
+      .nav-inner {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+      }
+      .nav-logo img {
+        height: 32px;
+        width: auto;
+        cursor: pointer;
+        transition: transform 0.3s;
+      }
+      .nav-logo img:hover {
+        transform: scale(1.05);
+      }
+      .nav-links {
+        display: flex;
+        align-items: center;
+        gap: 32px;
+        list-style: none;
+      }
+      .nav-links a {
+        position: relative;
+        font-family: var(--font-main);
+        font-size: 11px;
+        font-weight: 600;
+        letter-spacing: 0.15em;
+        text-transform: uppercase;
+        color: var(--gray-600);
+        text-decoration: none;
+        transition: color 0.2s;
+      }
+      .nav-links a::after {
+        content: "";
+        position: absolute;
+        bottom: -3px;
+        left: 0;
+        height: 1px;
+        width: 0;
+        background: var(--red);
+        transition: width 0.25s ease;
+      }
+      .nav-links a:hover {
+        color: var(--red);
+      }
+      .nav-links a:hover::after {
+        width: 100%;
+      }
+
+      .lang-switcher {
+        display: flex;
+        align-items: center;
+        gap: 2px;
+        border: 1px solid var(--gray-200);
+        border-radius: 999px;
+        padding: 4px 8px;
+      }
+      .lang-btn {
+        font-family: var(--font-main);
+        font-size: 10px;
+        font-weight: 700;
+        padding: 2px 6px;
+        border-radius: 999px;
+        border: none;
+        background: transparent;
+        color: var(--gray-500);
+        cursor: pointer;
+        transition:
+          background 0.2s,
+          color 0.2s,
+          transform 0.15s;
+      }
+      .lang-btn:hover {
+        transform: scale(1.1);
+        color: var(--gray-800);
+      }
+      .lang-btn.active {
+        background: var(--red);
+        color: var(--white);
+      }
+      .lang-sep {
+        color: var(--gray-300);
+        font-size: 11px;
+      }
+
+      .nav-right {
+        display: flex;
+        align-items: center;
+        gap: 16px;
+      }
+
+      .hamburger {
+        display: none;
+        flex-direction: column;
+        gap: 5px;
+        cursor: pointer;
+        padding: 4px;
+        background: none;
+        border: none;
+      }
+      .hamburger span {
+        display: block;
+        width: 22px;
+        height: 1.5px;
+        background: var(--black);
+        transition:
+          transform 0.3s,
+          opacity 0.3s;
+      }
+      .hamburger.open span:nth-child(1) {
+        transform: translateY(6.5px) rotate(45deg);
+      }
+      .hamburger.open span:nth-child(2) {
+        opacity: 0;
+      }
+      .hamburger.open span:nth-child(3) {
+        transform: translateY(-6.5px) rotate(-45deg);
+      }
+
+      .mobile-menu {
+        display: none;
+        flex-direction: column;
+        background: var(--white);
+        border-top: 1px solid var(--gray-100);
+        padding: 16px 24px 20px;
+        gap: 4px;
+      }
+      .mobile-menu.open {
+        display: flex;
+      }
+      .mobile-menu a {
+        font-family: var(--font-main);
+        font-size: 11px;
+        font-weight: 600;
+        letter-spacing: 0.15em;
+        text-transform: uppercase;
+        color: var(--gray-700);
+        text-decoration: none;
+        padding: 12px 0;
+        border-bottom: 1px solid var(--gray-50);
+        transition:
+          color 0.2s,
+          padding-left 0.2s;
+      }
+      .mobile-menu a:hover {
+        color: var(--red);
+        padding-left: 8px;
+      }
+
+      @media (max-width: 768px) {
+        .nav-links {
+          display: none;
+        }
+        .hamburger {
+          display: flex;
+        }
+      }
+
+      /* ─── HERO ─── */
+      #hero {
+        min-height: 100vh;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        position: relative;
+        overflow: hidden;
+        background: var(--white);
+        text-align: center;
+      }
+      .hero-bg-blob1 {
+        position: absolute;
+        top: -128px;
+        right: -128px;
+        width: 600px;
+        height: 600px;
+        border-radius: 50%;
+        background: var(--red);
+        opacity: 0.05;
+        animation: scaleIn 2s ease both;
+      }
+      .hero-bg-blob2 {
+        position: absolute;
+        bottom: -160px;
+        left: -160px;
+        width: 700px;
+        height: 700px;
+        border-radius: 50%;
+        background: var(--black);
+        opacity: 0.04;
+        animation: scaleIn 2s 0.4s ease both;
+      }
+      .hero-grid {
+        position: absolute;
+        inset: 0;
+        background-image:
+          linear-gradient(rgba(0, 0, 0, 0.04) 1px, transparent 1px),
+          linear-gradient(90deg, rgba(0, 0, 0, 0.04) 1px, transparent 1px);
+        background-size: 60px 60px;
+        animation: fadeIn 1.5s 0.5s both;
+      }
+      .hero-line-left {
+        position: absolute;
+        top: 33%;
+        left: 0;
+        width: 96px;
+        height: 1px;
+        background: var(--red);
+        transform-origin: left;
+        animation: slideRight 1.2s 1s ease both;
+      }
+      .hero-line-right {
+        position: absolute;
+        top: 33%;
+        right: 0;
+        width: 96px;
+        height: 1px;
+        background: var(--red);
+        transform-origin: right;
+        animation: slideRight 1.2s 1.2s ease both;
+      }
+      .hero-content {
+        position: relative;
+        z-index: 10;
+        max-width: 700px;
+        padding: 0 24px;
+      }
+      .hero-logo {
+        margin-bottom: 56px;
+        animation: blurReveal 1s ease both;
+      }
+      .hero-logo img {
+        height: clamp(100px, 15vw, 140px);
+        width: auto;
+      }
+      .hero-tagline {
+        font-family: var(--font-main);
+        font-size: 10px;
+        font-weight: 700;
+        letter-spacing: 0.4em;
+        text-transform: uppercase;
+        color: var(--red);
+        margin-bottom: 20px;
+        animation: fadeUp 0.7s 0.4s both;
+      }
+      .hero-desc {
+        font-family: var(--font-main);
+        font-size: clamp(16px, 2.5vw, 20px);
+        color: var(--gray-500);
+        line-height: 1.7;
+        max-width: 520px;
+        margin: 0 auto 56px;
+        animation: fadeUp 0.8s 0.6s both;
+      }
+      .hero-ctas {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 16px;
+        justify-content: center;
+        animation: fadeUp 0.8s 0.8s both;
+      }
+      .btn-primary {
+        position: relative;
+        padding: 16px 40px;
+        background: var(--red);
+        color: var(--white);
+        font-family: var(--font-main);
+        font-size: 11px;
+        font-weight: 700;
+        letter-spacing: 0.25em;
+        text-transform: uppercase;
+        border: none;
+        cursor: pointer;
+        overflow: hidden;
+        transition:
+          box-shadow 0.3s,
+          transform 0.2s;
+      }
+      .btn-primary::before {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background: var(--black);
+        transform: translateX(-100%);
+        transition: transform 0.3s ease;
+      }
+      .btn-primary:hover::before {
+        transform: translateX(0);
+      }
+      .btn-primary:hover {
+        box-shadow: 0 8px 30px rgba(222, 58, 40, 0.35);
+        transform: scale(1.03);
+      }
+      .btn-primary span {
+        position: relative;
+        z-index: 1;
+      }
+      .btn-secondary {
+        padding: 14px 40px;
+        background: transparent;
+        color: var(--black);
+        font-family: var(--font-main);
+        font-size: 11px;
+        font-weight: 700;
+        letter-spacing: 0.25em;
+        text-transform: uppercase;
+        border: 2px solid var(--black);
+        cursor: pointer;
+        transition:
+          background 0.3s,
+          color 0.3s,
+          transform 0.2s;
+      }
+      .btn-secondary:hover {
+        background: var(--black);
+        color: var(--white);
+        transform: scale(1.03);
+      }
+      .scroll-indicator {
+        position: absolute;
+        bottom: 40px;
+        left: 50%;
+        transform: translateX(-50%);
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 8px;
+        cursor: pointer;
+        animation: fadeIn 1s 1.4s both;
+      }
+      .scroll-indicator span {
+        font-family: var(--font-main);
+        font-size: 9px;
+        letter-spacing: 0.3em;
+        text-transform: uppercase;
+        color: var(--gray-400);
+      }
+      .scroll-arrow {
+        width: 16px;
+        height: 16px;
+        border-right: 1.5px solid var(--red);
+        border-bottom: 1.5px solid var(--red);
+        transform: rotate(45deg);
+        animation: bounce 1.5s infinite;
+      }
+
+      /* ─── ABOUT ─── */
+      #about {
+        padding: 112px 0;
+        background: var(--white);
+        position: relative;
+        overflow: hidden;
+      }
+      #about::before {
+        content: "";
+        position: absolute;
+        left: 0;
+        top: 0;
+        bottom: 0;
+        width: 1px;
+        background: linear-gradient(
+          to bottom,
+          transparent,
+          rgba(222, 58, 40, 0.2),
+          transparent
+        );
+      }
+      .about-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 80px;
+        align-items: center;
+      }
+      @media (max-width: 768px) {
+        .about-grid {
+          grid-template-columns: 1fr;
+          gap: 48px;
+        }
+      }
+      .about-title {
+        font-family: var(--font-heading);
+        font-weight: 600;
+        font-size: clamp(2rem, 4vw, 2.8rem);
+        letter-spacing: 0.02em;
+        line-height: 1.2;
+        margin-bottom: 32px;
+      }
+      .about-text {
+        font-family: var(--font-main);
+        font-size: 15px;
+        color: var(--gray-600);
+        line-height: 1.75;
+        margin-bottom: 20px;
+      }
+      .strength-item {
+        display: flex;
+        align-items: flex-start;
+        gap: 12px;
+        padding: 16px;
+        border: 1px solid var(--gray-100);
+        margin-bottom: 12px;
+        transition:
+          border-color 0.3s,
+          transform 0.3s;
+        cursor: default;
+      }
+      .strength-item:hover {
+        border-color: var(--red);
+        transform: translateX(6px);
+      }
+      .strength-icon {
+        width: 16px;
+        height: 16px;
+        flex-shrink: 0;
+        margin-top: 2px;
+        color: var(--red);
+      }
+      .strength-text {
+        font-family: var(--font-main);
+        font-size: 14px;
+        color: var(--gray-700);
+      }
+      .quote-block {
+        padding: 32px;
+        background: var(--black);
+        color: var(--white);
+        position: relative;
+        overflow: hidden;
+        cursor: default;
+        margin-top: 32px;
+      }
+      .quote-block::before {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background: var(--red);
+        transform: translateX(-100%);
+        transition: transform 0.4s ease;
+      }
+      .quote-block:hover::before {
+        transform: translateX(0);
+      }
+      .quote-text {
+        font-family: var(--font-accent);
+        font-style: italic;
+        font-size: 22px;
+        font-weight: 700;
+        line-height: 1.4;
+        letter-spacing: 0.03em;
+        position: relative;
+        z-index: 1;
+      }
+      .quote-text .accent {
+        color: var(--red);
+        transition: color 0.4s;
+      }
+      .quote-block:hover .accent {
+        color: var(--white);
+      }
+
+      /* ─── SERVICES ─── */
+      #services {
+        padding: 112px 0;
+        background: var(--gray-50);
+        position: relative;
+        overflow: hidden;
+      }
+      #services::after {
+        content: "";
+        position: absolute;
+        top: 0;
+        right: 0;
+        width: 256px;
+        height: 256px;
+        background: rgba(222, 58, 40, 0.05);
+        border-radius: 50%;
+        transform: translate(50%, -50%);
+        pointer-events: none;
+      }
+      .services-header {
+        text-align: center;
+        margin-bottom: 64px;
+      }
+      .services-grid {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 1px;
+        background: var(--gray-200);
+      }
+      @media (max-width: 900px) {
+        .services-grid {
+          grid-template-columns: repeat(2, 1fr);
+        }
+      }
+      @media (max-width: 560px) {
+        .services-grid {
+          grid-template-columns: 1fr;
+        }
+      }
+      .service-card {
+        background: var(--white);
+        padding: 32px;
+        position: relative;
+        overflow: hidden;
+        cursor: default;
+        transition:
+          background 0.5s,
+          transform 0.3s;
+      }
+      .service-card::after {
+        content: "";
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        height: 2px;
+        width: 0;
+        background: var(--red);
+        transition: width 0.4s ease;
+      }
+      .service-card:hover {
+        background: var(--black);
+        transform: translateY(-4px);
+      }
+      .service-card:hover::after {
+        width: 100%;
+      }
+      .service-icon {
+        width: 26px;
+        height: 26px;
+        color: var(--red);
+        margin-bottom: 20px;
+        transition: transform 0.3s;
+      }
+      .service-card:hover .service-icon {
+        transform: rotate(15deg) scale(1.2);
+      }
+      .service-title {
+        font-family: var(--font-heading);
+        font-weight: 600;
+        font-size: 15px;
+        color: var(--black);
+        margin-bottom: 12px;
+        transition: color 0.3s;
+      }
+      .service-card:hover .service-title {
+        color: var(--white);
+      }
+      .service-desc {
+        font-family: var(--font-main);
+        font-size: 13px;
+        color: var(--gray-500);
+        line-height: 1.7;
+        transition: color 0.3s;
+      }
+      .service-card:hover .service-desc {
+        color: var(--gray-300);
+      }
+
+      /* ─── PORTFOLIO ─── */
+      #portfolio {
+        padding: 112px 0;
+        background: var(--white);
+      }
+      .portfolio-header {
+        text-align: center;
+        margin-bottom: 48px;
+      }
+      .filter-bar {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 8px;
+        margin-top: 40px;
+      }
+      .filter-btn {
+        padding: 10px 24px;
+        font-family: var(--font-main);
+        font-size: 10px;
+        font-weight: 700;
+        letter-spacing: 0.2em;
+        text-transform: uppercase;
+        border: 1px solid var(--gray-300);
+        background: transparent;
+        color: var(--gray-600);
+        cursor: pointer;
+        transition: all 0.25s;
+      }
+      .filter-btn:hover {
+        border-color: var(--black);
+        color: var(--black);
+        transform: translateY(-2px);
+      }
+      .filter-btn.active {
+        background: var(--red);
+        border-color: var(--red);
+        color: var(--white);
+        box-shadow: 0 4px 20px rgba(222, 58, 40, 0.3);
+      }
+      .portfolio-grid {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 16px;
+        margin-top: 48px;
+      }
+      @media (max-width: 900px) {
+        .portfolio-grid {
+          grid-template-columns: repeat(2, 1fr);
+        }
+      }
+      @media (max-width: 560px) {
+        .portfolio-grid {
+          grid-template-columns: 1fr;
+        }
+      }
+      .portfolio-item {
+        position: relative;
+        overflow: hidden;
+        aspect-ratio: 1;
+        cursor: pointer;
+      }
+      .portfolio-item img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        transition: transform 0.6s ease;
+        display: block;
+      }
+      .portfolio-item:hover img {
+        transform: scale(1.08);
+      }
+      .portfolio-overlay {
+        position: absolute;
+        inset: 0;
+        background: rgba(0, 0, 0, 0);
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-end;
+        padding: 24px;
+        transition: background 0.35s;
+      }
+      .portfolio-item:hover .portfolio-overlay {
+        background: rgba(0, 0, 0, 0.75);
+      }
+      .portfolio-info {
+        transform: translateY(16px);
+        opacity: 0;
+        transition:
+          transform 0.3s,
+          opacity 0.3s;
+      }
+      .portfolio-item:hover .portfolio-info {
+        transform: translateY(0);
+        opacity: 1;
+      }
+      .portfolio-cat {
+        font-family: var(--font-main);
+        font-size: 9px;
+        font-weight: 700;
+        letter-spacing: 0.3em;
+        text-transform: uppercase;
+        color: var(--red);
+        margin-bottom: 4px;
+      }
+      .portfolio-name {
+        font-family: var(--font-heading);
+        font-weight: 600;
+        font-size: 17px;
+        color: var(--white);
+      }
+      .portfolio-corner {
+        position: absolute;
+        top: 0;
+        right: 0;
+        width: 0;
+        height: 0;
+        border-top: 40px solid var(--red);
+        border-left: 40px solid transparent;
+        opacity: 0;
+        transition: opacity 0.2s;
+      }
+      .portfolio-item:hover .portfolio-corner {
+        opacity: 1;
+      }
+      .portfolio-item.hidden {
+        display: none;
+      }
+
+      /* ─── SKILLS ─── */
+      #skills {
+        padding: 112px 0;
+        background: var(--black);
+        color: var(--white);
+        position: relative;
+        overflow: hidden;
+      }
+      #skills::before {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background-image: repeating-linear-gradient(
+          45deg,
+          var(--red) 0,
+          var(--red) 1px,
+          transparent 0,
+          transparent 50%
+        );
+        background-size: 20px 20px;
+        opacity: 0.05;
+        pointer-events: none;
+      }
+      .skills-header {
+        text-align: center;
+        margin-bottom: 64px;
+        position: relative;
+        z-index: 1;
+      }
+      .skills-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 64px;
+        position: relative;
+        z-index: 1;
+      }
+      @media (max-width: 768px) {
+        .skills-grid {
+          grid-template-columns: 1fr;
+          gap: 48px;
+        }
+      }
+      .skills-sub-label {
+        font-family: var(--font-main);
+        font-size: 10px;
+        font-weight: 700;
+        letter-spacing: 0.3em;
+        text-transform: uppercase;
+        color: var(--red);
+        margin-bottom: 32px;
+      }
+      .skill-bar-wrap {
+        margin-bottom: 28px;
+      }
+      .skill-bar-header {
+        display: flex;
+        justify-content: space-between;
+        margin-bottom: 8px;
+      }
+      .skill-name {
+        font-family: var(--font-main);
+        font-size: 13px;
+        color: var(--gray-300);
+      }
+      .skill-pct {
+        font-family: var(--font-main);
+        font-size: 13px;
+        font-weight: 700;
+        color: var(--red);
+      }
+      .skill-track {
+        height: 1px;
+        background: var(--gray-800);
+        position: relative;
+      }
+      .skill-fill {
+        height: 100%;
+        background: var(--red);
+        width: 0;
+        transition: width 1.2s ease;
+      }
+      .skill-dot {
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%) translateX(-50%);
+        width: 8px;
+        height: 8px;
+        border-radius: 50%;
+        background: var(--red);
+        box-shadow: 0 0 8px var(--red);
+        left: 0;
+        transition: left 1.2s ease;
+      }
+      .soft-skills {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 12px;
+        margin-bottom: 48px;
+      }
+      .soft-tag {
+        padding: 10px 20px;
+        border: 1px solid var(--gray-700);
+        font-family: var(--font-main);
+        font-size: 13px;
+        color: var(--gray-300);
+        cursor: default;
+        transition:
+          background 0.3s,
+          border-color 0.3s,
+          color 0.3s,
+          transform 0.2s;
+      }
+      .soft-tag:hover {
+        background: var(--red);
+        border-color: var(--red);
+        color: var(--white);
+        transform: translateY(-3px);
+      }
+      .stats-grid {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 16px;
+      }
+      .stat-card {
+        text-align: center;
+        border: 1px solid var(--gray-800);
+        padding: 20px;
+        transition:
+          border-color 0.3s,
+          transform 0.3s;
+        cursor: default;
+      }
+      .stat-card:hover {
+        border-color: var(--red);
+        transform: translateY(-4px);
+      }
+      .stat-num {
+        font-family: var(--font-heading);
+        font-weight: 600;
+        font-size: 2rem;
+        color: var(--red);
+      }
+      .stat-label {
+        font-family: var(--font-main);
+        font-size: 9px;
+        font-weight: 700;
+        letter-spacing: 0.2em;
+        text-transform: uppercase;
+        color: var(--gray-500);
+        margin-top: 4px;
+      }
+
+      /* ─── CONTACT ─── */
+      #contact {
+        padding: 112px 0;
+        background: var(--gray-50);
+        position: relative;
+        overflow: hidden;
+      }
+      #contact::after {
+        content: "";
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        width: 256px;
+        height: 256px;
+        background: rgba(222, 58, 40, 0.05);
+        border-radius: 50%;
+        transform: translate(-50%, 50%);
+        pointer-events: none;
+      }
+      .contact-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 80px;
+      }
+      @media (max-width: 768px) {
+        .contact-grid {
+          grid-template-columns: 1fr;
+          gap: 48px;
+        }
+      }
+      .contact-title {
+        font-family: var(--font-heading);
+        font-weight: 600;
+        font-size: clamp(2rem, 4vw, 2.8rem);
+        line-height: 1.2;
+        margin-bottom: 24px;
+      }
+      .contact-desc {
+        font-family: var(--font-main);
+        font-size: 15px;
+        color: var(--gray-600);
+        line-height: 1.75;
+        margin-bottom: 40px;
+      }
+      .social-links {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 12px;
+      }
+      .social-link {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        padding: 12px 20px;
+        border: 1px solid var(--gray-300);
+        font-family: var(--font-main);
+        font-size: 13px;
+        color: var(--gray-700);
+        text-decoration: none;
+        transition:
+          border-color 0.3s,
+          color 0.3s,
+          background 0.3s,
+          transform 0.2s;
+      }
+      .social-link:hover {
+        border-color: var(--red);
+        color: var(--white);
+        background: var(--red);
+        transform: translateY(-3px);
+      }
+      .form-group {
+        margin-bottom: 20px;
+      }
+      .form-label {
+        display: block;
+        font-family: var(--font-main);
+        font-size: 10px;
+        font-weight: 700;
+        letter-spacing: 0.2em;
+        text-transform: uppercase;
+        color: var(--gray-500);
+        margin-bottom: 8px;
+      }
+      .form-input,
+      .form-textarea {
+        width: 100%;
+        border: 1px solid var(--gray-200);
+        padding: 12px 16px;
+        font-family: var(--font-main);
+        font-size: 14px;
+        color: var(--black);
+        background: var(--white);
+        outline: none;
+        transition: border-color 0.3s;
+      }
+      .form-input:focus,
+      .form-textarea:focus {
+        border-color: var(--red);
+      }
+      .form-textarea {
+        resize: none;
+        height: 140px;
+      }
+      .btn-submit {
+        width: 100%;
+        padding: 16px;
+        background: var(--red);
+        color: var(--white);
+        font-family: var(--font-main);
+        font-size: 11px;
+        font-weight: 700;
+        letter-spacing: 0.25em;
+        text-transform: uppercase;
+        border: none;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 8px;
+        transition:
+          background 0.3s,
+          transform 0.2s,
+          box-shadow 0.3s;
+      }
+      .btn-submit:hover {
+        background: #c02e1e;
+        transform: scale(1.02);
+        box-shadow: 0 8px 30px rgba(222, 58, 40, 0.3);
+      }
+      .btn-submit:disabled {
+        opacity: 0.6;
+        cursor: not-allowed;
+        transform: none;
+      }
+
+      /* ─── TOAST ─── */
+      .toast {
+        position: fixed;
+        bottom: 32px;
+        right: 32px;
+        background: var(--black);
+        color: var(--white);
+        padding: 14px 24px;
+        font-family: var(--font-main);
+        font-size: 13px;
+        font-weight: 500;
+        border-left: 3px solid var(--red);
+        box-shadow: 0 8px 30px rgba(0, 0, 0, 0.2);
+        z-index: 9999;
+        transform: translateY(80px);
+        opacity: 0;
+        transition:
+          transform 0.4s ease,
+          opacity 0.4s ease;
+      }
+      .toast.show {
+        transform: translateY(0);
+        opacity: 1;
+      }
+
+      /* ─── FOOTER ─── */
+      footer {
+        background: var(--black);
+        color: var(--white);
+        position: relative;
+        overflow: hidden;
+      }
+      .footer-accent {
+        height: 1px;
+        background: linear-gradient(
+          to right,
+          transparent,
+          var(--red),
+          transparent
+        );
+      }
+      .footer-main {
+        padding: 64px 0;
+      }
+      .footer-grid {
+        display: grid;
+        grid-template-columns: 1.2fr 1fr 1fr;
+        gap: 48px;
+        margin-bottom: 48px;
+      }
+      @media (max-width: 768px) {
+        .footer-grid {
+          grid-template-columns: 1fr;
+          gap: 32px;
+        }
+      }
+      .footer-logo img {
+        height: 36px;
+        width: auto;
+        filter: brightness(0) invert(1);
+        margin-bottom: 20px;
+        transition: transform 0.3s;
+      }
+      .footer-logo img:hover {
+        transform: scale(1.05);
+      }
+      .footer-tagline {
+        font-family: var(--font-main);
+        font-size: 13px;
+        color: var(--gray-500);
+        line-height: 1.7;
+        max-width: 260px;
+      }
+      .footer-col-title {
+        font-family: var(--font-main);
+        font-size: 10px;
+        font-weight: 700;
+        letter-spacing: 0.3em;
+        text-transform: uppercase;
+        color: var(--red);
+        margin-bottom: 20px;
+      }
+      .footer-nav {
+        list-style: none;
+        display: flex;
+        flex-direction: column;
+        gap: 12px;
+      }
+      .footer-nav a {
+        font-family: var(--font-main);
+        font-size: 13px;
+        color: var(--gray-400);
+        text-decoration: none;
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        transition:
+          color 0.2s,
+          padding-left 0.2s;
+      }
+      .footer-nav a::before {
+        content: "";
+        display: inline-block;
+        width: 16px;
+        height: 1px;
+        background: var(--gray-700);
+        transition: background 0.2s;
+        flex-shrink: 0;
+      }
+      .footer-nav a:hover {
+        color: var(--red);
+        padding-left: 6px;
+      }
+      .footer-nav a:hover::before {
+        background: var(--red);
+      }
+      .footer-socials {
+        display: flex;
+        flex-direction: column;
+        gap: 12px;
+      }
+      .footer-social-link {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        font-family: var(--font-main);
+        font-size: 13px;
+        color: var(--gray-400);
+        text-decoration: none;
+        transition:
+          color 0.2s,
+          padding-left 0.2s;
+      }
+      .footer-social-icon {
+        width: 32px;
+        height: 32px;
+        border: 1px solid var(--gray-800);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-shrink: 0;
+        transition: border-color 0.2s;
+      }
+      .footer-social-link:hover {
+        color: var(--red);
+        padding-left: 6px;
+      }
+      .footer-social-link:hover .footer-social-icon {
+        border-color: var(--red);
+      }
+      .footer-divider {
+        height: 1px;
+        background: var(--gray-900);
+        margin-bottom: 32px;
+      }
+      .footer-bottom {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        flex-wrap: wrap;
+        gap: 16px;
+      }
+      .footer-copy {
+        font-family: var(--font-main);
+        font-size: 11px;
+        color: var(--gray-600);
+        display: flex;
+        align-items: center;
+        gap: 6px;
+      }
+      .footer-copy .heart {
+        color: var(--red);
+        font-size: 12px;
+      }
+      .back-top {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        padding: 8px 16px;
+        border: 1px solid var(--gray-800);
+        font-family: var(--font-main);
+        font-size: 11px;
+        color: var(--gray-500);
+        background: none;
+        cursor: pointer;
+        transition:
+          border-color 0.3s,
+          color 0.3s,
+          background 0.3s,
+          transform 0.2s;
+      }
+      .back-top:hover {
+        border-color: var(--red);
+        color: var(--white);
+        background: var(--red);
+        transform: translateY(-3px);
+      }
+    </style>
+  </head>
+  <body>
+    <!-- ─── NAVBAR ─── -->
+    <nav id="navbar">
+      <div class="container nav-inner">
+        <div class="nav-logo">
+          <img
+            src="https://harmless-tapir-303.convex.cloud/api/storage/c39c2d35-9404-4001-9c8d-77b3c8402b61"
+            alt="Abril Studio"
+            onclick="window.scrollTo({ top: 0, behavior: 'smooth' })"
+          />
+        </div>
+        <ul class="nav-links" id="navLinks">
+          <li><a href="#about" data-key="nav.about">Sobre mí</a></li>
+          <li><a href="#services" data-key="nav.services">Servicios</a></li>
+          <li><a href="#portfolio" data-key="nav.portfolio">Portfolio</a></li>
+          <li><a href="#skills" data-key="nav.skills">Habilidades</a></li>
+          <li><a href="#contact" data-key="nav.contact">Contacto</a></li>
+        </ul>
+        <div class="nav-right">
+          <div class="lang-switcher">
+            <button class="lang-btn active" data-lang="es">ES</button>
+            <span class="lang-sep">|</span>
+            <button class="lang-btn" data-lang="en">EN</button>
+            <span class="lang-sep">|</span>
+            <button class="lang-btn" data-lang="pt">PT</button>
+          </div>
+          <button class="hamburger" id="hamburger" aria-label="Menu">
+            <span></span><span></span><span></span>
+          </button>
+        </div>
+      </div>
+      <div class="mobile-menu" id="mobileMenu">
+        <a href="#about" data-key="nav.about">Sobre mí</a>
+        <a href="#services" data-key="nav.services">Servicios</a>
+        <a href="#portfolio" data-key="nav.portfolio">Portfolio</a>
+        <a href="#skills" data-key="nav.skills">Habilidades</a>
+        <a href="#contact" data-key="nav.contact">Contacto</a>
+      </div>
+    </nav>
+
+    <!-- ─── HERO ─── -->
+    <section id="hero">
+      <div class="hero-bg-blob1"></div>
+      <div class="hero-bg-blob2"></div>
+      <div class="hero-grid"></div>
+      <div class="hero-line-left"></div>
+      <div class="hero-line-right"></div>
+      <div class="hero-content">
+        <div class="hero-logo">
+          <img
+            src="https://harmless-tapir-303.convex.cloud/api/storage/c39c2d35-9404-4001-9c8d-77b3c8402b61"
+            alt="Abril Studio"
+          />
+        </div>
+        <p class="hero-tagline" data-key="hero.tagline">Diseñadora Gráfica</p>
+        <p class="hero-desc" data-key="hero.description">
+          Creando piezas y estrategias de comunicación visual que combinan
+          creatividad, sensibilidad y funcionalidad.
+        </p>
+        <div class="hero-ctas">
+          <button class="btn-primary" onclick="scrollTo('#portfolio')">
+            <span data-key="hero.cta.portfolio">Ver Portfolio</span>
+          </button>
+          <button
+            class="btn-secondary"
+            onclick="scrollTo('#contact')"
+            data-key="hero.cta.contact"
+          >
+            Contactar
+          </button>
+        </div>
+      </div>
+      <div class="scroll-indicator" onclick="scrollTo('#about')">
+        <span data-key="hero.scroll">Desplazar hacia abajo</span>
+        <div class="scroll-arrow"></div>
+      </div>
+    </section>
+
+    <!-- ─── ABOUT ─── -->
+    <section id="about">
+      <div class="container">
+        <div class="about-grid">
+          <div class="reveal">
+            <span class="section-label" data-key="about.title"
+              >Sobre Abril Studio</span
+            >
+            <h2 class="about-title" data-key="about.subtitle">
+              Diseño que habla, emociona y construye sentido
+            </h2>
+            <p class="about-text" data-key="about.description">
+              En Abril Studio creemos que el diseño no es sólo estética. Es un
+              lenguaje capaz de conectar, inspirar y transformar. Creamos piezas
+              y estrategias de comunicación visual que combinan creatividad,
+              sensibilidad y funcionalidad, adaptados a las necesidades de cada
+              proyecto.
+            </p>
+            <p class="about-text" data-key="about.description2">
+              Nuestra propuesta se basa en escuchar, comprender y traducir ideas
+              en soluciones gráficas que transmitan la esencia de cada marca o
+              mensaje. Desde la identidad visual hasta la dirección de arte,
+              cada trabajo está pensado para generar impacto y dejar huella.
+            </p>
+          </div>
+          <div class="reveal reveal-delay-2">
+            <div class="strength-item">
+              <svg
+                class="strength-icon"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+              >
+                <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14" />
+                <polyline points="22 4 12 14.01 9 11.01" />
+              </svg>
+              <span class="strength-text" data-key="about.education"
+                >Formación universitaria en Diseño Gráfico</span
+              >
+            </div>
+            <div class="strength-item">
+              <svg
+                class="strength-icon"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+              >
+                <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14" />
+                <polyline points="22 4 12 14.01 9 11.01" />
+              </svg>
+              <span class="strength-text" data-key="about.adobe"
+                >Manejo avanzado de Adobe Creative Cloud</span
+              >
+            </div>
+            <div class="strength-item">
+              <svg
+                class="strength-icon"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+              >
+                <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14" />
+                <polyline points="22 4 12 14.01 9 11.01" />
+              </svg>
+              <span class="strength-text" data-key="about.communication"
+                >Comunicación efectiva y pensamiento visual</span
+              >
+            </div>
+            <div class="strength-item">
+              <svg
+                class="strength-icon"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+              >
+                <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14" />
+                <polyline points="22 4 12 14.01 9 11.01" />
+              </svg>
+              <span class="strength-text" data-key="about.drawing"
+                >Buen nivel de dibujo analógico</span
+              >
+            </div>
+            <div class="quote-block">
+              <p class="quote-text">
+                "diseño que habla,<br /><span class="accent">emociona</span>
+                y<br />construye sentido."
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ─── SERVICES ─── -->
+    <section id="services">
+      <div class="container">
+        <div class="services-header reveal">
+          <span class="section-label" data-key="services.title">Servicios</span>
+          <h2 class="section-title" data-key="services.subtitle">
+            Soluciones de diseño adaptables, estéticas y originales
+          </h2>
+        </div>
+        <div class="services-grid">
+          <div class="service-card reveal">
+            <svg
+              class="service-icon"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+            >
+              <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2" />
+            </svg>
+            <h3 class="service-title" data-key="services.identity.title">
+              Identidad Visual
+            </h3>
+            <p class="service-desc" data-key="services.identity.desc">
+              Creación de marcas, logotipos y sistemas de identidad visual
+              coherentes y memorables.
+            </p>
+          </div>
+          <div class="service-card reveal reveal-delay-1">
+            <svg
+              class="service-icon"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+            >
+              <path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z" />
+              <path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z" />
+            </svg>
+            <h3 class="service-title" data-key="services.editorial.title">
+              Diseño Editorial
+            </h3>
+            <p class="service-desc" data-key="services.editorial.desc">
+              Diseño de publicaciones, revistas, libros y materiales impresos
+              con alta calidad tipográfica.
+            </p>
+          </div>
+          <div class="service-card reveal reveal-delay-2">
+            <svg
+              class="service-icon"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+            >
+              <rect x="2" y="3" width="20" height="14" rx="2" ry="2" />
+              <line x1="8" y1="21" x2="16" y2="21" />
+              <line x1="12" y1="17" x2="12" y2="21" />
+            </svg>
+            <h3 class="service-title" data-key="services.digital.title">
+              Diseño Digital
+            </h3>
+            <p class="service-desc" data-key="services.digital.desc">
+              Piezas para redes sociales, banners, presentaciones y contenido
+              digital impactante.
+            </p>
+          </div>
+          <div class="service-card reveal">
+            <svg
+              class="service-icon"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+            >
+              <path
+                d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"
+              />
+              <circle cx="12" cy="13" r="4" />
+            </svg>
+            <h3 class="service-title" data-key="services.art.title">
+              Dirección de Arte
+            </h3>
+            <p class="service-desc" data-key="services.art.desc">
+              Conceptualización y dirección visual de proyectos creativos con
+              coherencia estética.
+            </p>
+          </div>
+          <div class="service-card reveal reveal-delay-1">
+            <svg
+              class="service-icon"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+            >
+              <path
+                d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"
+              />
+            </svg>
+            <h3 class="service-title" data-key="services.packaging.title">
+              Packaging
+            </h3>
+            <p class="service-desc" data-key="services.packaging.desc">
+              Diseño de envases y embalajes que comunican la esencia del
+              producto.
+            </p>
+          </div>
+          <div class="service-card reveal reveal-delay-2">
+            <svg
+              class="service-icon"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+            >
+              <rect x="2" y="3" width="7" height="7" />
+              <rect x="15" y="3" width="7" height="7" />
+              <rect x="15" y="14" width="7" height="7" />
+              <rect x="2" y="14" width="7" height="7" />
+            </svg>
+            <h3 class="service-title" data-key="services.branding.title">
+              Branding
+            </h3>
+            <p class="service-desc" data-key="services.branding.desc">
+              Estrategia y construcción de marca para conectar con tu audiencia
+              de forma auténtica.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ─── PORTFOLIO ─── -->
+    <section id="portfolio">
+      <div class="container">
+        <div class="portfolio-header reveal">
+          <span class="section-label" data-key="portfolio.title"
+            >Portfolio</span
+          >
+          <h2 class="section-title" data-key="portfolio.subtitle">
+            Trabajos seleccionados
+          </h2>
+          <div class="filter-bar">
+            <button
+              class="filter-btn active"
+              data-filter="all"
+              data-key="portfolio.all"
+            >
+              Todos
+            </button>
+            <button
+              class="filter-btn"
+              data-filter="identity"
+              data-key="portfolio.identity"
+            >
+              Identidad
+            </button>
+            <button
+              class="filter-btn"
+              data-filter="editorial"
+              data-key="portfolio.editorial"
+            >
+              Editorial
+            </button>
+            <button
+              class="filter-btn"
+              data-filter="digital"
+              data-key="portfolio.digital"
+            >
+              Digital
+            </button>
+          </div>
+        </div>
+        <div class="portfolio-grid" id="portfolioGrid">
+          <div class="portfolio-item" data-category="identity">
+            <img
+              src="https://images.unsplash.com/photo-1634942537034-2531766767d1?w=600&q=80"
+              alt="Identidad Corporativa"
+              loading="lazy"
+            />
+            <div class="portfolio-overlay">
+              <div class="portfolio-info">
+                <p class="portfolio-cat">identity</p>
+                <h3 class="portfolio-name" data-key="portfolio.project1">
+                  Identidad Corporativa
+                </h3>
+              </div>
+            </div>
+            <div class="portfolio-corner"></div>
+          </div>
+          <div class="portfolio-item" data-category="editorial">
+            <img
+              src="https://images.unsplash.com/photo-1586717791821-3f44a563fa4c?w=600&q=80"
+              alt="Diseño Editorial"
+              loading="lazy"
+            />
+            <div class="portfolio-overlay">
+              <div class="portfolio-info">
+                <p class="portfolio-cat">editorial</p>
+                <h3 class="portfolio-name" data-key="portfolio.project2">
+                  Diseño Editorial
+                </h3>
+              </div>
+            </div>
+            <div class="portfolio-corner"></div>
+          </div>
+          <div class="portfolio-item" data-category="digital">
+            <img
+              src="https://images.unsplash.com/photo-1611532736597-de2d4265fba3?w=600&q=80"
+              alt="Campaña Digital"
+              loading="lazy"
+            />
+            <div class="portfolio-overlay">
+              <div class="portfolio-info">
+                <p class="portfolio-cat">digital</p>
+                <h3 class="portfolio-name" data-key="portfolio.project3">
+                  Campaña Digital
+                </h3>
+              </div>
+            </div>
+            <div class="portfolio-corner"></div>
+          </div>
+          <div class="portfolio-item" data-category="identity">
+            <img
+              src="https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=600&q=80"
+              alt="Packaging"
+              loading="lazy"
+            />
+            <div class="portfolio-overlay">
+              <div class="portfolio-info">
+                <p class="portfolio-cat">identity</p>
+                <h3 class="portfolio-name" data-key="portfolio.project4">
+                  Packaging
+                </h3>
+              </div>
+            </div>
+            <div class="portfolio-corner"></div>
+          </div>
+          <div class="portfolio-item" data-category="editorial">
+            <img
+              src="https://images.unsplash.com/photo-1561070791-2526d30994b5?w=600&q=80"
+              alt="Branding"
+              loading="lazy"
+            />
+            <div class="portfolio-overlay">
+              <div class="portfolio-info">
+                <p class="portfolio-cat">editorial</p>
+                <h3 class="portfolio-name" data-key="portfolio.project5">
+                  Branding
+                </h3>
+              </div>
+            </div>
+            <div class="portfolio-corner"></div>
+          </div>
+          <div class="portfolio-item" data-category="digital">
+            <img
+              src="https://images.unsplash.com/photo-1542744094-3a31f272c490?w=600&q=80"
+              alt="Dirección de Arte"
+              loading="lazy"
+            />
+            <div class="portfolio-overlay">
+              <div class="portfolio-info">
+                <p class="portfolio-cat">digital</p>
+                <h3 class="portfolio-name" data-key="portfolio.project6">
+                  Dirección de Arte
+                </h3>
+              </div>
+            </div>
+            <div class="portfolio-corner"></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ─── SKILLS ─── -->
+    <section id="skills">
+      <div class="container">
+        <div class="skills-header reveal">
+          <span class="section-label" data-key="skills.title">Habilidades</span>
+          <h2 class="section-title white" data-key="skills.subtitle">
+            Herramientas y competencias
+          </h2>
+        </div>
+        <div class="skills-grid">
+          <div class="reveal">
+            <p class="skills-sub-label" data-key="skills.software">Software</p>
+            <div class="skill-bar-wrap">
+              <div class="skill-bar-header">
+                <span class="skill-name" data-key="skills.illustrator"
+                  >Adobe Illustrator</span
+                >
+                <span class="skill-pct">90%</span>
+              </div>
+              <div class="skill-track">
+                <div class="skill-fill" data-pct="90"></div>
+                <div class="skill-dot" data-pct="90"></div>
+              </div>
+            </div>
+            <div class="skill-bar-wrap">
+              <div class="skill-bar-header">
+                <span class="skill-name" data-key="skills.photoshop"
+                  >Adobe Photoshop</span
+                >
+                <span class="skill-pct">80%</span>
+              </div>
+              <div class="skill-track">
+                <div class="skill-fill" data-pct="80"></div>
+                <div class="skill-dot" data-pct="80"></div>
+              </div>
+            </div>
+            <div class="skill-bar-wrap">
+              <div class="skill-bar-header">
+                <span class="skill-name" data-key="skills.indesign"
+                  >Adobe InDesign</span
+                >
+                <span class="skill-pct">85%</span>
+              </div>
+              <div class="skill-track">
+                <div class="skill-fill" data-pct="85"></div>
+                <div class="skill-dot" data-pct="85"></div>
+              </div>
+            </div>
+            <div class="skill-bar-wrap">
+              <div class="skill-bar-header">
+                <span class="skill-name" data-key="skills.office"
+                  >Microsoft Office</span
+                >
+                <span class="skill-pct">75%</span>
+              </div>
+              <div class="skill-track">
+                <div class="skill-fill" data-pct="75"></div>
+                <div class="skill-dot" data-pct="75"></div>
+              </div>
+            </div>
+          </div>
+          <div class="reveal reveal-delay-2">
+            <p class="skills-sub-label" data-key="skills.soft">
+              Habilidades Blandas
+            </p>
+            <div class="soft-skills">
+              <span class="soft-tag" data-key="skills.creativity"
+                >Creatividad</span
+              >
+              <span class="soft-tag" data-key="skills.communication"
+                >Comunicación</span
+              >
+              <span class="soft-tag" data-key="skills.thinking"
+                >Pensamiento Visual</span
+              >
+              <span class="soft-tag" data-key="skills.empathy">Empatía</span>
+              <span class="soft-tag" data-key="skills.teamwork"
+                >Trabajo en Equipo</span
+              >
+            </div>
+            <div class="stats-grid">
+              <div class="stat-card">
+                <p class="stat-num">3+</p>
+                <p class="stat-label">Años</p>
+              </div>
+              <div class="stat-card">
+                <p class="stat-num">20+</p>
+                <p class="stat-label">Proyectos</p>
+              </div>
+              <div class="stat-card">
+                <p class="stat-num">100%</p>
+                <p class="stat-label">Dedicación</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ─── CONTACT ─── -->
+    <section id="contact">
+      <div class="container">
+        <div class="contact-grid">
+          <div class="reveal">
+            <span class="section-label" data-key="contact.title">Contacto</span>
+            <h2 class="contact-title" data-key="contact.subtitle">
+              ¿Tenés un proyecto en mente?
+            </h2>
+            <p class="contact-desc" data-key="contact.description">
+              Estoy disponible para proyectos freelance, colaboraciones y
+              oportunidades laborales. ¡Hablemos!
+            </p>
+            <div class="social-links">
+              <a
+                href="https://instagram.com"
+                target="_blank"
+                class="social-link"
+              >
+                <svg
+                  width="15"
+                  height="15"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                >
+                  <rect x="2" y="2" width="20" height="20" rx="5" ry="5" />
+                  <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z" />
+                  <line x1="17.5" y1="6.5" x2="17.51" y2="6.5" />
+                </svg>
+                Instagram
+              </a>
+              <a
+                href="https://linkedin.com"
+                target="_blank"
+                class="social-link"
+              >
+                <svg
+                  width="15"
+                  height="15"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                >
+                  <path
+                    d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"
+                  />
+                  <rect x="2" y="9" width="4" height="12" />
+                  <circle cx="4" cy="4" r="2" />
+                </svg>
+                LinkedIn
+              </a>
+              <a href="mailto:abril@abrilstudio.com" class="social-link">
+                <svg
+                  width="15"
+                  height="15"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                >
+                  <path
+                    d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"
+                  />
+                  <polyline points="22,6 12,13 2,6" />
+                </svg>
+                Email
+              </a>
+            </div>
+          </div>
+          <div class="reveal reveal-delay-2">
+            <form id="contactForm">
+              <div class="form-group">
+                <label class="form-label" data-key="contact.name">Nombre</label>
+                <input
+                  type="text"
+                  class="form-input"
+                  id="formName"
+                  data-placeholder-key="contact.namePlaceholder"
+                  placeholder="Tu nombre"
+                  required
+                />
+              </div>
+              <div class="form-group">
+                <label class="form-label" data-key="contact.email">Email</label>
+                <input
+                  type="email"
+                  class="form-input"
+                  id="formEmail"
+                  data-placeholder-key="contact.emailPlaceholder"
+                  placeholder="tu@email.com"
+                  required
+                />
+              </div>
+              <div class="form-group">
+                <label class="form-label" data-key="contact.message"
+                  >Mensaje</label
+                >
+                <textarea
+                  class="form-textarea"
+                  id="formMessage"
+                  data-placeholder-key="contact.messagePlaceholder"
+                  placeholder="Contame sobre tu proyecto..."
+                  required
+                ></textarea>
+              </div>
+              <button type="submit" class="btn-submit" id="submitBtn">
+                <svg
+                  width="14"
+                  height="14"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                >
+                  <line x1="22" y1="2" x2="11" y2="13" />
+                  <polygon points="22 2 15 22 11 13 2 9 22 2" />
+                </svg>
+                <span data-key="contact.send">Enviar mensaje</span>
+              </button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ─── FOOTER ─── -->
+    <footer>
+      <div class="footer-accent"></div>
+      <div class="footer-main">
+        <div class="container">
+          <div class="footer-grid">
+            <div class="footer-logo">
+              <img
+                src="https://harmless-tapir-303.convex.cloud/api/storage/c39c2d35-9404-4001-9c8d-77b3c8402b61"
+                alt="Abril Studio"
+              />
+              <p class="footer-tagline">
+                Diseño gráfico con propósito. Creatividad, sensibilidad y
+                funcionalidad en cada proyecto.
+              </p>
+            </div>
+            <div>
+              <p class="footer-col-title">Navegación</p>
+              <ul class="footer-nav">
+                <li><a href="#about" data-key="nav.about">Sobre mí</a></li>
+                <li>
+                  <a href="#services" data-key="nav.services">Servicios</a>
+                </li>
+                <li>
+                  <a href="#portfolio" data-key="nav.portfolio">Portfolio</a>
+                </li>
+                <li><a href="#skills" data-key="nav.skills">Habilidades</a></li>
+                <li><a href="#contact" data-key="nav.contact">Contacto</a></li>
+              </ul>
+            </div>
+            <div>
+              <p class="footer-col-title">Conectar</p>
+              <div class="footer-socials">
+                <a
+                  href="https://instagram.com"
+                  target="_blank"
+                  class="footer-social-link"
+                >
+                  <span class="footer-social-icon"
+                    ><svg
+                      width="14"
+                      height="14"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="currentColor"
+                      stroke-width="2"
+                    >
+                      <rect x="2" y="2" width="20" height="20" rx="5" ry="5" />
+                      <path
+                        d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"
+                      />
+                      <line x1="17.5" y1="6.5" x2="17.51" y2="6.5" /></svg
+                  ></span>
+                  Instagram
+                </a>
+                <a
+                  href="https://linkedin.com"
+                  target="_blank"
+                  class="footer-social-link"
+                >
+                  <span class="footer-social-icon"
+                    ><svg
+                      width="14"
+                      height="14"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="currentColor"
+                      stroke-width="2"
+                    >
+                      <path
+                        d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"
+                      />
+                      <rect x="2" y="9" width="4" height="12" />
+                      <circle cx="4" cy="4" r="2" /></svg
+                  ></span>
+                  LinkedIn
+                </a>
+                <a
+                  href="mailto:abril@abrilstudio.com"
+                  class="footer-social-link"
+                >
+                  <span class="footer-social-icon"
+                    ><svg
+                      width="14"
+                      height="14"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="currentColor"
+                      stroke-width="2"
+                    >
+                      <path
+                        d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"
+                      />
+                      <polyline points="22,6 12,13 2,6" /></svg
+                  ></span>
+                  Email
+                </a>
+              </div>
+            </div>
+          </div>
+          <div class="footer-divider"></div>
+          <div class="footer-bottom">
+            <p class="footer-copy">
+              Diseñado con <span class="heart">♥</span> por Abril Studio · ©
+              <span id="year"></span> Todos los derechos reservados.
+            </p>
+            <button
+              class="back-top"
+              onclick="window.scrollTo({ top: 0, behavior: 'smooth' })"
+            >
+              <svg
+                width="12"
+                height="12"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+              >
+                <line x1="12" y1="19" x2="12" y2="5" />
+                <polyline points="5 12 12 5 19 12" />
+              </svg>
+              Volver arriba
+            </button>
+          </div>
+        </div>
+      </div>
+    </footer>
+
+    <!-- ─── TOAST ─── -->
+    <div class="toast" id="toast"></div>
+
+    <script>
+      // ─── TRANSLATIONS ───
+      const translations = {
+        es: {
+          "nav.about": "Sobre mí",
+          "nav.services": "Servicios",
+          "nav.portfolio": "Portfolio",
+          "nav.skills": "Habilidades",
+          "nav.contact": "Contacto",
+          "hero.tagline": "Diseñadora Gráfica",
+          "hero.description":
+            "Creando piezas y estrategias de comunicación visual que combinan creatividad, sensibilidad y funcionalidad.",
+          "hero.cta.portfolio": "Ver Portfolio",
+          "hero.cta.contact": "Contactar",
+          "hero.scroll": "Desplazar hacia abajo",
+          "about.title": "Sobre Abril Studio",
+          "about.subtitle": "Diseño que habla, emociona y construye sentido",
+          "about.description":
+            "En Abril Studio creemos que el diseño no es sólo estética. Es un lenguaje capaz de conectar, inspirar y transformar. Creamos piezas y estrategias de comunicación visual que combinan creatividad, sensibilidad y funcionalidad, adaptados a las necesidades de cada proyecto.",
+          "about.description2":
+            "Nuestra propuesta se basa en escuchar, comprender y traducir ideas en soluciones gráficas que transmitan la esencia de cada marca o mensaje. Desde la identidad visual hasta la dirección de arte, cada trabajo está pensado para generar impacto y dejar huella.",
+          "about.education": "Formación universitaria en Diseño Gráfico",
+          "about.adobe": "Manejo avanzado de Adobe Creative Cloud",
+          "about.communication": "Comunicación efectiva y pensamiento visual",
+          "about.drawing": "Buen nivel de dibujo analógico",
+          "services.title": "Servicios",
+          "services.subtitle":
+            "Soluciones de diseño adaptables, estéticas y originales",
+          "services.identity.title": "Identidad Visual",
+          "services.identity.desc":
+            "Creación de marcas, logotipos y sistemas de identidad visual coherentes y memorables.",
+          "services.editorial.title": "Diseño Editorial",
+          "services.editorial.desc":
+            "Diseño de publicaciones, revistas, libros y materiales impresos con alta calidad tipográfica.",
+          "services.digital.title": "Diseño Digital",
+          "services.digital.desc":
+            "Piezas para redes sociales, banners, presentaciones y contenido digital impactante.",
+          "services.art.title": "Dirección de Arte",
+          "services.art.desc":
+            "Conceptualización y dirección visual de proyectos creativos con coherencia estética.",
+          "services.packaging.title": "Packaging",
+          "services.packaging.desc":
+            "Diseño de envases y embalajes que comunican la esencia del producto.",
+          "services.branding.title": "Branding",
+          "services.branding.desc":
+            "Estrategia y construcción de marca para conectar con tu audiencia de forma auténtica.",
+          "portfolio.title": "Portfolio",
+          "portfolio.subtitle": "Trabajos seleccionados",
+          "portfolio.all": "Todos",
+          "portfolio.identity": "Identidad",
+          "portfolio.editorial": "Editorial",
+          "portfolio.digital": "Digital",
+          "portfolio.project1": "Identidad Corporativa",
+          "portfolio.project2": "Diseño Editorial",
+          "portfolio.project3": "Campaña Digital",
+          "portfolio.project4": "Packaging",
+          "portfolio.project5": "Branding",
+          "portfolio.project6": "Dirección de Arte",
+          "skills.title": "Habilidades",
+          "skills.subtitle": "Herramientas y competencias",
+          "skills.software": "Software",
+          "skills.soft": "Habilidades Blandas",
+          "skills.illustrator": "Adobe Illustrator",
+          "skills.photoshop": "Adobe Photoshop",
+          "skills.indesign": "Adobe InDesign",
+          "skills.office": "Microsoft Office",
+          "skills.creativity": "Creatividad",
+          "skills.communication": "Comunicación",
+          "skills.thinking": "Pensamiento Visual",
+          "skills.empathy": "Empatía",
+          "skills.teamwork": "Trabajo en Equipo",
+          "contact.title": "Contacto",
+          "contact.subtitle": "¿Tenés un proyecto en mente?",
+          "contact.description":
+            "Estoy disponible para proyectos freelance, colaboraciones y oportunidades laborales. ¡Hablemos!",
+          "contact.name": "Nombre",
+          "contact.email": "Email",
+          "contact.message": "Mensaje",
+          "contact.send": "Enviar mensaje",
+          "contact.sending": "Enviando...",
+          "contact.success": "¡Mensaje enviado!",
+          "contact.namePlaceholder": "Tu nombre",
+          "contact.emailPlaceholder": "tu@email.com",
+          "contact.messagePlaceholder": "Contame sobre tu proyecto...",
+          "footer.rights": "Todos los derechos reservados.",
+          "footer.made": "Diseñado con",
+          "footer.by": "por Abril Studio",
+        },
+        en: {
+          "nav.about": "About",
+          "nav.services": "Services",
+          "nav.portfolio": "Portfolio",
+          "nav.skills": "Skills",
+          "nav.contact": "Contact",
+          "hero.tagline": "Graphic Designer",
+          "hero.description":
+            "Creating visual communication pieces and strategies that combine creativity, sensitivity and functionality.",
+          "hero.cta.portfolio": "View Portfolio",
+          "hero.cta.contact": "Get in Touch",
+          "hero.scroll": "Scroll down",
+          "about.title": "About Abril Studio",
+          "about.subtitle": "Design that speaks, moves and builds meaning",
+          "about.description":
+            "At Abril Studio we believe design is not just aesthetics. It's a language capable of connecting, inspiring and transforming. We create visual communication pieces and strategies that combine creativity, sensitivity and functionality, tailored to each project's needs.",
+          "about.description2":
+            "Our approach is based on listening, understanding and translating ideas into graphic solutions that convey the essence of each brand or message. From visual identity to art direction, every piece is designed to make an impact and leave a mark.",
+          "about.education": "University education in Graphic Design",
+          "about.adobe": "Advanced Adobe Creative Cloud skills",
+          "about.communication": "Effective communication and visual thinking",
+          "about.drawing": "Strong analog drawing skills",
+          "services.title": "Services",
+          "services.subtitle":
+            "Adaptable, aesthetic and original design solutions",
+          "services.identity.title": "Visual Identity",
+          "services.identity.desc":
+            "Creation of brands, logos and coherent, memorable visual identity systems.",
+          "services.editorial.title": "Editorial Design",
+          "services.editorial.desc":
+            "Design of publications, magazines, books and printed materials with high typographic quality.",
+          "services.digital.title": "Digital Design",
+          "services.digital.desc":
+            "Social media pieces, banners, presentations and impactful digital content.",
+          "services.art.title": "Art Direction",
+          "services.art.desc":
+            "Conceptualization and visual direction of creative projects with aesthetic coherence.",
+          "services.packaging.title": "Packaging",
+          "services.packaging.desc":
+            "Packaging design that communicates the essence of the product.",
+          "services.branding.title": "Branding",
+          "services.branding.desc":
+            "Brand strategy and construction to connect with your audience authentically.",
+          "portfolio.title": "Portfolio",
+          "portfolio.subtitle": "Selected works",
+          "portfolio.all": "All",
+          "portfolio.identity": "Identity",
+          "portfolio.editorial": "Editorial",
+          "portfolio.digital": "Digital",
+          "portfolio.project1": "Corporate Identity",
+          "portfolio.project2": "Editorial Design",
+          "portfolio.project3": "Digital Campaign",
+          "portfolio.project4": "Packaging",
+          "portfolio.project5": "Branding",
+          "portfolio.project6": "Art Direction",
+          "skills.title": "Skills",
+          "skills.subtitle": "Tools and competencies",
+          "skills.software": "Software",
+          "skills.soft": "Soft Skills",
+          "skills.illustrator": "Adobe Illustrator",
+          "skills.photoshop": "Adobe Photoshop",
+          "skills.indesign": "Adobe InDesign",
+          "skills.office": "Microsoft Office",
+          "skills.creativity": "Creativity",
+          "skills.communication": "Communication",
+          "skills.thinking": "Visual Thinking",
+          "skills.empathy": "Empathy",
+          "skills.teamwork": "Teamwork",
+          "contact.title": "Contact",
+          "contact.subtitle": "Have a project in mind?",
+          "contact.description":
+            "I'm available for freelance projects, collaborations and job opportunities. Let's talk!",
+          "contact.name": "Name",
+          "contact.email": "Email",
+          "contact.message": "Message",
+          "contact.send": "Send message",
+          "contact.sending": "Sending...",
+          "contact.success": "Message sent!",
+          "contact.namePlaceholder": "Your name",
+          "contact.emailPlaceholder": "you@email.com",
+          "contact.messagePlaceholder": "Tell me about your project...",
+          "footer.rights": "All rights reserved.",
+          "footer.made": "Designed with",
+          "footer.by": "by Abril Studio",
+        },
+        pt: {
+          "nav.about": "Sobre mim",
+          "nav.services": "Serviços",
+          "nav.portfolio": "Portfolio",
+          "nav.skills": "Habilidades",
+          "nav.contact": "Contato",
+          "hero.tagline": "Designer Gráfica",
+          "hero.description":
+            "Criando peças e estratégias de comunicação visual que combinam criatividade, sensibilidade e funcionalidade.",
+          "hero.cta.portfolio": "Ver Portfolio",
+          "hero.cta.contact": "Entrar em Contato",
+          "hero.scroll": "Rolar para baixo",
+          "about.title": "Sobre Abril Studio",
+          "about.subtitle": "Design que fala, emociona e constrói sentido",
+          "about.description":
+            "Na Abril Studio acreditamos que o design não é apenas estética. É uma linguagem capaz de conectar, inspirar e transformar. Criamos peças e estratégias de comunicação visual que combinam criatividade, sensibilidade e funcionalidade, adaptadas às necessidades de cada projeto.",
+          "about.description2":
+            "Nossa proposta se baseia em ouvir, compreender e traduzir ideias em soluções gráficas que transmitam a essência de cada marca ou mensagem. Da identidade visual à direção de arte, cada trabalho é pensado para gerar impacto e deixar marca.",
+          "about.education": "Formação universitária em Design Gráfico",
+          "about.adobe": "Domínio avançado do Adobe Creative Cloud",
+          "about.communication": "Comunicação eficaz e pensamento visual",
+          "about.drawing": "Bom nível de desenho analógico",
+          "services.title": "Serviços",
+          "services.subtitle":
+            "Soluções de design adaptáveis, estéticas e originais",
+          "services.identity.title": "Identidade Visual",
+          "services.identity.desc":
+            "Criação de marcas, logotipos e sistemas de identidade visual coerentes e memoráveis.",
+          "services.editorial.title": "Design Editorial",
+          "services.editorial.desc":
+            "Design de publicações, revistas, livros e materiais impressos com alta qualidade tipográfica.",
+          "services.digital.title": "Design Digital",
+          "services.digital.desc":
+            "Peças para redes sociais, banners, apresentações e conteúdo digital impactante.",
+          "services.art.title": "Direção de Arte",
+          "services.art.desc":
+            "Conceituação e direção visual de projetos criativos com coerência estética.",
+          "services.packaging.title": "Embalagem",
+          "services.packaging.desc":
+            "Design de embalagens que comunicam a essência do produto.",
+          "services.branding.title": "Branding",
+          "services.branding.desc":
+            "Estratégia e construção de marca para conectar com seu público de forma autêntica.",
+          "portfolio.title": "Portfolio",
+          "portfolio.subtitle": "Trabalhos selecionados",
+          "portfolio.all": "Todos",
+          "portfolio.identity": "Identidade",
+          "portfolio.editorial": "Editorial",
+          "portfolio.digital": "Digital",
+          "portfolio.project1": "Identidade Corporativa",
+          "portfolio.project2": "Design Editorial",
+          "portfolio.project3": "Campanha Digital",
+          "portfolio.project4": "Embalagem",
+          "portfolio.project5": "Branding",
+          "portfolio.project6": "Direção de Arte",
+          "skills.title": "Habilidades",
+          "skills.subtitle": "Ferramentas e competências",
+          "skills.software": "Software",
+          "skills.soft": "Habilidades Interpessoais",
+          "skills.illustrator": "Adobe Illustrator",
+          "skills.photoshop": "Adobe Photoshop",
+          "skills.indesign": "Adobe InDesign",
+          "skills.office": "Microsoft Office",
+          "skills.creativity": "Criatividade",
+          "skills.communication": "Comunicação",
+          "skills.thinking": "Pensamento Visual",
+          "skills.empathy": "Empatia",
+          "skills.teamwork": "Trabalho em Equipe",
+          "contact.title": "Contato",
+          "contact.subtitle": "Tem um projeto em mente?",
+          "contact.description":
+            "Estou disponível para projetos freelance, colaborações e oportunidades de trabalho. Vamos conversar!",
+          "contact.name": "Nome",
+          "contact.email": "Email",
+          "contact.message": "Mensagem",
+          "contact.send": "Enviar mensagem",
+          "contact.sending": "Enviando...",
+          "contact.success": "Mensagem enviada!",
+          "contact.namePlaceholder": "Seu nome",
+          "contact.emailPlaceholder": "voce@email.com",
+          "contact.messagePlaceholder": "Conte-me sobre seu projeto...",
+          "footer.rights": "Todos os direitos reservados.",
+          "footer.made": "Projetado com",
+          "footer.by": "por Abril Studio",
+        },
+      };
+
+      let currentLang = "es";
+
+      function t(key) {
+        return translations[currentLang][key] || key;
+      }
+
+      function applyTranslations() {
+        document.querySelectorAll("[data-key]").forEach((el) => {
+          el.textContent = t(el.dataset.key);
+        });
+        document.querySelectorAll("[data-placeholder-key]").forEach((el) => {
+          el.placeholder = t(el.dataset.placeholderKey);
+        });
+      }
+
+      // ─── LANGUAGE SWITCHER ───
+      document.querySelectorAll(".lang-btn").forEach((btn) => {
+        btn.addEventListener("click", () => {
+          currentLang = btn.dataset.lang;
+          document
+            .querySelectorAll(".lang-btn")
+            .forEach((b) => b.classList.remove("active"));
+          btn.classList.add("active");
+          applyTranslations();
+        });
+      });
+
+      // ─── NAVBAR SCROLL ───
+      window.addEventListener("scroll", () => {
+        const nav = document.getElementById("navbar");
+        nav.classList.toggle("scrolled", window.scrollY > 20);
+      });
+
+      // ─── HAMBURGER ───
+      const hamburger = document.getElementById("hamburger");
+      const mobileMenu = document.getElementById("mobileMenu");
+      hamburger.addEventListener("click", () => {
+        hamburger.classList.toggle("open");
+        mobileMenu.classList.toggle("open");
+      });
+      mobileMenu.querySelectorAll("a").forEach((a) => {
+        a.addEventListener("click", () => {
+          hamburger.classList.remove("open");
+          mobileMenu.classList.remove("open");
+        });
+      });
+
+      // ─── SMOOTH SCROLL ───
+      function scrollTo(selector) {
+        const el = document.querySelector(selector);
+        if (el) el.scrollIntoView({ behavior: "smooth" });
+      }
+      document.querySelectorAll('a[href^="#"]').forEach((a) => {
+        a.addEventListener("click", (e) => {
+          e.preventDefault();
+          scrollTo(a.getAttribute("href"));
+        });
+      });
+
+      // ─── REVEAL ON SCROLL ───
+      const revealObserver = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+              entry.target.classList.add("visible");
+            }
+          });
+        },
+        { threshold: 0.1, rootMargin: "-60px" },
+      );
+
+      document
+        .querySelectorAll(".reveal")
+        .forEach((el) => revealObserver.observe(el));
+
+      // ─── SKILL BARS ───
+      const skillObserver = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+              entry.target.querySelectorAll(".skill-fill").forEach((fill) => {
+                const pct = fill.dataset.pct;
+                fill.style.width = pct + "%";
+              });
+              entry.target.querySelectorAll(".skill-dot").forEach((dot) => {
+                const pct = dot.dataset.pct;
+                dot.style.left = pct + "%";
+              });
+              skillObserver.unobserve(entry.target);
+            }
+          });
+        },
+        { threshold: 0.3 },
+      );
+
+      document
+        .querySelectorAll("#skills .reveal")
+        .forEach((el) => skillObserver.observe(el));
+
+      // ─── PORTFOLIO FILTER ───
+      document.querySelectorAll(".filter-btn").forEach((btn) => {
+        btn.addEventListener("click", () => {
+          document
+            .querySelectorAll(".filter-btn")
+            .forEach((b) => b.classList.remove("active"));
+          btn.classList.add("active");
+          const filter = btn.dataset.filter;
+          document.querySelectorAll(".portfolio-item").forEach((item) => {
+            if (filter === "all" || item.dataset.category === filter) {
+              item.classList.remove("hidden");
+            } else {
+              item.classList.add("hidden");
+            }
+          });
+        });
+      });
+
+      // ─── CONTACT FORM ───
+      document
+        .getElementById("contactForm")
+        .addEventListener("submit", async (e) => {
+          e.preventDefault();
+          const btn = document.getElementById("submitBtn");
+          btn.disabled = true;
+          btn.querySelector("[data-key]").textContent = t("contact.sending");
+          await new Promise((r) => setTimeout(r, 1500));
+          showToast(t("contact.success"));
+          e.target.reset();
+          btn.disabled = false;
+          btn.querySelector("[data-key]").textContent = t("contact.send");
+        });
+
+      // ─── TOAST ───
+      function showToast(msg) {
+        const toast = document.getElementById("toast");
+        toast.textContent = msg;
+        toast.classList.add("show");
+        setTimeout(() => toast.classList.remove("show"), 3500);
+      }
+
+      // ─── YEAR ───
+      document.getElementById("year").textContent = new Date().getFullYear();
+
+      // ─── INIT ───
+      applyTranslations();
+    </script>
+    <script
+      defer
+      src="https://static.cloudflareinsights.com/beacon.min.js/v8c78df7c7c0f484497ecbca7046644da1771523124516"
+      integrity="sha512-8DS7rgIrAmghBFwoOTujcf6D9rXvH8xm8JQ1Ja01h9QX8EzXldiszufYa4IFfKdLUKTTrnSFXLDkUEOTrZQ8Qg=="
+      data-cf-beacon='{"version":"2024.11.0","token":"b1226d90e3184d41aa395a6b2c8a5cf1","r":1,"server_timing":{"name":{"cfCacheStatus":true,"cfEdge":true,"cfExtPri":true,"cfL4":true,"cfOrigin":true,"cfSpeedBrain":true},"location_startswith":null}}'
+      crossorigin="anonymous"
+    ></script>
+  </body>
+</html>
