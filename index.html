@@ -1940,7 +1940,7 @@
             </p>
             <div class="social-links">
               <a
-                href="https://instagram.com"
+                href="https://www.instagram.com/cami_barb145/"
                 target="_blank"
                 class="social-link"
               >
@@ -1959,7 +1959,7 @@
                 Instagram
               </a>
               <a
-                href="https://linkedin.com"
+                href="https://www.linkedin.com/in/camila-barboza-a614a4296/"
                 target="_blank"
                 class="social-link"
               >
@@ -1979,7 +1979,7 @@
                 </svg>
                 LinkedIn
               </a>
-              <a href="mailto:abril@abrilstudio.com" class="social-link">
+              <a href="mailto:camilabarboza145@gmail.com" class="social-link">
                 <svg
                   width="15"
                   height="15"
@@ -2061,7 +2061,7 @@
           <div class="footer-grid">
             <div class="footer-logo">
               <img
-                src="https://harmless-tapir-303.convex.cloud/api/storage/c39c2d35-9404-4001-9c8d-77b3c8402b61"
+                src="Logo Abril Studio.png"
                 alt="Abril Studio"
               />
               <p class="footer-tagline">
@@ -2087,7 +2087,7 @@
               <p class="footer-col-title">Conectar</p>
               <div class="footer-socials">
                 <a
-                  href="https://instagram.com"
+                  href="https://www.instagram.com/cami_barb145"
                   target="_blank"
                   class="footer-social-link"
                 >
@@ -2109,7 +2109,7 @@
                   Instagram
                 </a>
                 <a
-                  href="https://linkedin.com"
+                  href="https://www.linkedin.com/in/camila-barboza-a614a4296/"
                   target="_blank"
                   class="footer-social-link"
                 >
@@ -2131,7 +2131,7 @@
                   LinkedIn
                 </a>
                 <a
-                  href="mailto:abril@abrilstudio.com"
+                  href="mailto:camilabarboza145@gmail.com"
                   class="footer-social-link"
                 >
                   <span class="footer-social-icon"
@@ -2562,19 +2562,30 @@
       });
 
       // ─── CONTACT FORM ───
-      document
-        .getElementById("contactForm")
-        .addEventListener("submit", async (e) => {
-          e.preventDefault();
-          const btn = document.getElementById("submitBtn");
-          btn.disabled = true;
-          btn.querySelector("[data-key]").textContent = t("contact.sending");
-          await new Promise((r) => setTimeout(r, 1500));
-          showToast(t("contact.success"));
-          e.target.reset();
-          btn.disabled = false;
-          btn.querySelector("[data-key]").textContent = t("contact.send");
-        });
+document
+  .getElementById("contactForm")
+  .addEventListener("submit", (e) => {
+    e.preventDefault();
+
+    const btn = document.getElementById("submitBtn");
+    btn.disabled = true;
+    btn.querySelector("[data-key]").textContent = t("contact.sending");
+
+    const form = e.target;
+
+    const name = form.name.value;
+    const email = form.email.value;
+    const message = form.message.value;
+
+    const mailto = `mailto:camilabarboza145@gmail.com?subject=Contacto desde Abril Studio&body=Nombre: ${encodeURIComponent(name)}%0AEmail: ${encodeURIComponent(email)}%0A%0AMensaje:%0A${encodeURIComponent(message)}`;
+
+    window.location.href = mailto;
+
+    form.reset();
+
+    btn.disabled = false;
+    btn.querySelector("[data-key]").textContent = t("contact.send");
+  });
 
       // ─── TOAST ───
       function showToast(msg) {
