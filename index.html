@@ -801,10 +801,12 @@
         box-shadow: 0 4px 20px rgba(222, 58, 40, 0.3);
       }
       .portfolio-grid {
-        display: grid;
+      /*  display: grid;
         grid-template-columns: repeat(3, 1fr);
         gap: 16px;
-        margin-top: 48px;
+       margin-top: 48px; */
+       columns: 3;
+       column-gap: 16px;
       }
       @media (max-width: 900px) {
         .portfolio-grid {
@@ -817,15 +819,17 @@
         }
       }
       .portfolio-item {
+        break-inside: avoid;
         position: relative;
         overflow: hidden;
-        aspect-ratio: 1;
         cursor: pointer;
+        border-radius: 16px;
+        margin-bottom: 16px;
       }
       .portfolio-item img {
         width: 100%;
-        height: 100%;
-        object-fit: cover;
+        height: auto;
+       /* object-fit: cover; */
         transition: transform 0.6s ease;
         display: block;
       }
@@ -1436,9 +1440,9 @@
           creatividad, sensibilidad y funcionalidad.
         </p>
         <div class="hero-ctas">
-          <button class="btn-primary" onclick="scrollTo('#portfolio')">
-            <span data-key="hero.cta.portfolio">Ver Portfolio</span>
-          </button>
+         <button class="btn-primary" onclick="document.querySelector('#portfolio').scrollIntoView({ behavior: 'smooth' })">
+  <span data-key="hero.cta.portfolio">Ver Portfolio</span>
+</button>
           <button
             class="btn-secondary"
             onclick="scrollTo('#contact')"
@@ -1610,10 +1614,10 @@
               <line x1="8" y1="21" x2="16" y2="21" />
               <line x1="12" y1="17" x2="12" y2="21" />
             </svg>
-            <h3 class="service-title" data-key="services.digital.title">
+            <h3 class="service-title" data-key="services.print.title">
               Diseño Digital
             </h3>
-            <p class="service-desc" data-key="services.digital.desc">
+            <p class="service-desc" data-key="services.print.desc">
               Piezas para redes sociales, banners, presentaciones y contenido
               digital impactante.
             </p>
@@ -1718,17 +1722,17 @@
             </button>
             <button
               class="filter-btn"
-              data-filter="digital"
-              data-key="portfolio.digital"
+              data-filter="print"
+              data-key="portfolio.print"
             >
-              Digital
+              Afiches
             </button>
           </div>
         </div>
         <div class="portfolio-grid" id="portfolioGrid">
           <div class="portfolio-item" data-category="identity">
             <img
-              src="https://images.unsplash.com/photo-1634942537034-2531766767d1?w=600&q=80"
+              src="img/vinos-picasso.jpg"
               alt="Identidad Corporativa"
               loading="lazy"
             />
@@ -1744,7 +1748,7 @@
           </div>
           <div class="portfolio-item" data-category="editorial">
             <img
-              src="https://images.unsplash.com/photo-1586717791821-3f44a563fa4c?w=600&q=80"
+              src="img/pagina-de-revista.jpg"
               alt="Diseño Editorial"
               loading="lazy"
             />
@@ -1758,15 +1762,47 @@
             </div>
             <div class="portfolio-corner"></div>
           </div>
-          <div class="portfolio-item" data-category="digital">
+          <div class="portfolio-item" data-category="print">
             <img
-              src="https://images.unsplash.com/photo-1611532736597-de2d4265fba3?w=600&q=80"
+              src="img/adriana-lestido-1.jpg"
               alt="Campaña Digital"
               loading="lazy"
             />
             <div class="portfolio-overlay">
               <div class="portfolio-info">
-                <p class="portfolio-cat">digital</p>
+                <p class="portfolio-cat">print</p>
+                <h3 class="portfolio-name" data-key="portfolio.project3">
+                  Campaña Digital
+                </h3>
+              </div>
+            </div>
+            <div class="portfolio-corner"></div>
+          </div>
+                    <div class="portfolio-item" data-category="print">
+            <img
+              src="img/adriana-lestido-3.jpg"
+              alt="Campaña Digital"
+              loading="lazy"
+            />
+            <div class="portfolio-overlay">
+              <div class="portfolio-info">
+                <p class="portfolio-cat">print</p>
+                <h3 class="portfolio-name" data-key="portfolio.project3">
+                  Campaña Digital
+                </h3>
+              </div>
+            </div>
+            <div class="portfolio-corner"></div>
+          </div>
+                    <div class="portfolio-item" data-category="print">
+            <img
+              src="img/adriana-lestido-4.jpg"
+              alt="Campaña Digital"
+              loading="lazy"
+            />
+            <div class="portfolio-overlay">
+              <div class="portfolio-info">
+                <p class="portfolio-cat">print</p>
                 <h3 class="portfolio-name" data-key="portfolio.project3">
                   Campaña Digital
                 </h3>
@@ -1776,7 +1812,7 @@
           </div>
           <div class="portfolio-item" data-category="identity">
             <img
-              src="https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=600&q=80"
+              src="img/fosforos-prometeo.jpg"
               alt="Packaging"
               loading="lazy"
             />
@@ -1790,9 +1826,25 @@
             </div>
             <div class="portfolio-corner"></div>
           </div>
-          <div class="portfolio-item" data-category="editorial">
+          <div class="portfolio-item" data-category="print">
             <img
-              src="https://images.unsplash.com/photo-1561070791-2526d30994b5?w=600&q=80"
+              src="img/guitarra-en-obra.jpg"
+              alt="Branding"
+              loading="lazy"
+            />
+            <div class="portfolio-overlay">
+              <div class="portfolio-info">
+                <p class="portfolio-cat">print</p>
+                <h3 class="portfolio-name" data-key="portfolio.project5">
+                  Branding
+                </h3>
+              </div>
+            </div>
+            <div class="portfolio-corner"></div>
+          </div>
+                    <div class="portfolio-item" data-category="editorial">
+            <img
+              src="img/pagina-doble.jpg"
               alt="Branding"
               loading="lazy"
             />
@@ -1806,15 +1858,15 @@
             </div>
             <div class="portfolio-corner"></div>
           </div>
-          <div class="portfolio-item" data-category="digital">
+          <div class="portfolio-item" data-category="print">
             <img
-              src="https://images.unsplash.com/photo-1542744094-3a31f272c490?w=600&q=80"
+              src="img/adriana-lestido-2.jpg"
               alt="Dirección de Arte"
               loading="lazy"
             />
             <div class="portfolio-overlay">
               <div class="portfolio-info">
-                <p class="portfolio-cat">digital</p>
+                <p class="portfolio-cat">print</p>
                 <h3 class="portfolio-name" data-key="portfolio.project6">
                   Dirección de Arte
                 </h3>
@@ -2186,264 +2238,322 @@
 
     <script>
       // ─── TRANSLATIONS ───
-      const translations = {
-        es: {
-          "nav.about": "Sobre mí",
-          "nav.services": "Servicios",
-          "nav.portfolio": "Portfolio",
-          "nav.skills": "Habilidades",
-          "nav.contact": "Contacto",
-          "hero.tagline": "Diseñadora Gráfica",
-          "hero.description":
-            "Creando piezas y estrategias de comunicación visual que combinan creatividad, sensibilidad y funcionalidad.",
-          "hero.cta.portfolio": "Ver Portfolio",
-          "hero.cta.contact": "Contactar",
-          "hero.scroll": "Desplazar hacia abajo",
-          "about.title": "Sobre Abril Studio",
-          "about.subtitle": "Diseño que habla, emociona y construye sentido",
-          "about.description":
-            "En Abril Studio creemos que el diseño no es sólo estética. Es un lenguaje capaz de conectar, inspirar y transformar. Creamos piezas y estrategias de comunicación visual que combinan creatividad, sensibilidad y funcionalidad, adaptados a las necesidades de cada proyecto.",
-          "about.description2":
-            "Nuestra propuesta se basa en escuchar, comprender y traducir ideas en soluciones gráficas que transmitan la esencia de cada marca o mensaje. Desde la identidad visual hasta la dirección de arte, cada trabajo está pensado para generar impacto y dejar huella.",
-          "about.education": "Formación universitaria en Diseño Gráfico",
-          "about.adobe": "Manejo avanzado de Adobe Creative Cloud",
-          "about.communication": "Comunicación efectiva y pensamiento visual",
-          "about.drawing": "Buen nivel de dibujo analógico",
-          "services.title": "Servicios",
-          "services.subtitle":
-            "Soluciones de diseño adaptables, estéticas y originales",
-          "services.identity.title": "Identidad Visual",
-          "services.identity.desc":
-            "Creación de marcas, logotipos y sistemas de identidad visual coherentes y memorables.",
-          "services.editorial.title": "Diseño Editorial",
-          "services.editorial.desc":
-            "Diseño de publicaciones, revistas, libros y materiales impresos con alta calidad tipográfica.",
-          "services.digital.title": "Diseño Digital",
-          "services.digital.desc":
-            "Piezas para redes sociales, banners, presentaciones y contenido digital impactante.",
-          "services.art.title": "Dirección de Arte",
-          "services.art.desc":
-            "Conceptualización y dirección visual de proyectos creativos con coherencia estética.",
-          "services.packaging.title": "Packaging",
-          "services.packaging.desc":
-            "Diseño de envases y embalajes que comunican la esencia del producto.",
-          "services.branding.title": "Branding",
-          "services.branding.desc":
-            "Estrategia y construcción de marca para conectar con tu audiencia de forma auténtica.",
-          "portfolio.title": "Portfolio",
-          "portfolio.subtitle": "Trabajos seleccionados",
-          "portfolio.all": "Todos",
-          "portfolio.identity": "Identidad",
-          "portfolio.editorial": "Editorial",
-          "portfolio.digital": "Digital",
-          "portfolio.project1": "Identidad Corporativa",
-          "portfolio.project2": "Diseño Editorial",
-          "portfolio.project3": "Campaña Digital",
-          "portfolio.project4": "Packaging",
-          "portfolio.project5": "Branding",
-          "portfolio.project6": "Dirección de Arte",
-          "skills.title": "Habilidades",
-          "skills.subtitle": "Herramientas y competencias",
-          "skills.software": "Software",
-          "skills.soft": "Habilidades Blandas",
-          "skills.illustrator": "Adobe Illustrator",
-          "skills.photoshop": "Adobe Photoshop",
-          "skills.indesign": "Adobe InDesign",
-          "skills.office": "Microsoft Office",
-          "skills.creativity": "Creatividad",
-          "skills.communication": "Comunicación",
-          "skills.thinking": "Pensamiento Visual",
-          "skills.empathy": "Empatía",
-          "skills.teamwork": "Trabajo en Equipo",
-          "contact.title": "Contacto",
-          "contact.subtitle": "¿Tenés un proyecto en mente?",
-          "contact.description":
-            "Estoy disponible para proyectos freelance, colaboraciones y oportunidades laborales. ¡Hablemos!",
-          "contact.name": "Nombre",
-          "contact.email": "Email",
-          "contact.message": "Mensaje",
-          "contact.send": "Enviar mensaje",
-          "contact.sending": "Enviando...",
-          "contact.success": "¡Mensaje enviado!",
-          "contact.namePlaceholder": "Tu nombre",
-          "contact.emailPlaceholder": "tu@email.com",
-          "contact.messagePlaceholder": "Contame sobre tu proyecto...",
-          "footer.rights": "Todos los derechos reservados.",
-          "footer.made": "Diseñado con",
-          "footer.by": "por Abril Studio",
-        },
-        en: {
-          "nav.about": "About",
-          "nav.services": "Services",
-          "nav.portfolio": "Portfolio",
-          "nav.skills": "Skills",
-          "nav.contact": "Contact",
-          "hero.tagline": "Graphic Designer",
-          "hero.description":
-            "Creating visual communication pieces and strategies that combine creativity, sensitivity and functionality.",
-          "hero.cta.portfolio": "View Portfolio",
-          "hero.cta.contact": "Get in Touch",
-          "hero.scroll": "Scroll down",
-          "about.title": "About Abril Studio",
-          "about.subtitle": "Design that speaks, moves and builds meaning",
-          "about.description":
-            "At Abril Studio we believe design is not just aesthetics. It's a language capable of connecting, inspiring and transforming. We create visual communication pieces and strategies that combine creativity, sensitivity and functionality, tailored to each project's needs.",
-          "about.description2":
-            "Our approach is based on listening, understanding and translating ideas into graphic solutions that convey the essence of each brand or message. From visual identity to art direction, every piece is designed to make an impact and leave a mark.",
-          "about.education": "University education in Graphic Design",
-          "about.adobe": "Advanced Adobe Creative Cloud skills",
-          "about.communication": "Effective communication and visual thinking",
-          "about.drawing": "Strong analog drawing skills",
-          "services.title": "Services",
-          "services.subtitle":
-            "Adaptable, aesthetic and original design solutions",
-          "services.identity.title": "Visual Identity",
-          "services.identity.desc":
-            "Creation of brands, logos and coherent, memorable visual identity systems.",
-          "services.editorial.title": "Editorial Design",
-          "services.editorial.desc":
-            "Design of publications, magazines, books and printed materials with high typographic quality.",
-          "services.digital.title": "Digital Design",
-          "services.digital.desc":
-            "Social media pieces, banners, presentations and impactful digital content.",
-          "services.art.title": "Art Direction",
-          "services.art.desc":
-            "Conceptualization and visual direction of creative projects with aesthetic coherence.",
-          "services.packaging.title": "Packaging",
-          "services.packaging.desc":
-            "Packaging design that communicates the essence of the product.",
-          "services.branding.title": "Branding",
-          "services.branding.desc":
-            "Brand strategy and construction to connect with your audience authentically.",
-          "portfolio.title": "Portfolio",
-          "portfolio.subtitle": "Selected works",
-          "portfolio.all": "All",
-          "portfolio.identity": "Identity",
-          "portfolio.editorial": "Editorial",
-          "portfolio.digital": "Digital",
-          "portfolio.project1": "Corporate Identity",
-          "portfolio.project2": "Editorial Design",
-          "portfolio.project3": "Digital Campaign",
-          "portfolio.project4": "Packaging",
-          "portfolio.project5": "Branding",
-          "portfolio.project6": "Art Direction",
-          "skills.title": "Skills",
-          "skills.subtitle": "Tools and competencies",
-          "skills.software": "Software",
-          "skills.soft": "Soft Skills",
-          "skills.illustrator": "Adobe Illustrator",
-          "skills.photoshop": "Adobe Photoshop",
-          "skills.indesign": "Adobe InDesign",
-          "skills.office": "Microsoft Office",
-          "skills.creativity": "Creativity",
-          "skills.communication": "Communication",
-          "skills.thinking": "Visual Thinking",
-          "skills.empathy": "Empathy",
-          "skills.teamwork": "Teamwork",
-          "contact.title": "Contact",
-          "contact.subtitle": "Have a project in mind?",
-          "contact.description":
-            "I'm available for freelance projects, collaborations and job opportunities. Let's talk!",
-          "contact.name": "Name",
-          "contact.email": "Email",
-          "contact.message": "Message",
-          "contact.send": "Send message",
-          "contact.sending": "Sending...",
-          "contact.success": "Message sent!",
-          "contact.namePlaceholder": "Your name",
-          "contact.emailPlaceholder": "you@email.com",
-          "contact.messagePlaceholder": "Tell me about your project...",
-          "footer.rights": "All rights reserved.",
-          "footer.made": "Designed with",
-          "footer.by": "by Abril Studio",
-        },
-        pt: {
-          "nav.about": "Sobre mim",
-          "nav.services": "Serviços",
-          "nav.portfolio": "Portfolio",
-          "nav.skills": "Habilidades",
-          "nav.contact": "Contato",
-          "hero.tagline": "Designer Gráfica",
-          "hero.description":
-            "Criando peças e estratégias de comunicação visual que combinam criatividade, sensibilidade e funcionalidade.",
-          "hero.cta.portfolio": "Ver Portfolio",
-          "hero.cta.contact": "Entrar em Contato",
-          "hero.scroll": "Rolar para baixo",
-          "about.title": "Sobre Abril Studio",
-          "about.subtitle": "Design que fala, emociona e constrói sentido",
-          "about.description":
-            "Na Abril Studio acreditamos que o design não é apenas estética. É uma linguagem capaz de conectar, inspirar e transformar. Criamos peças e estratégias de comunicação visual que combinam criatividade, sensibilidade e funcionalidade, adaptadas às necessidades de cada projeto.",
-          "about.description2":
-            "Nossa proposta se baseia em ouvir, compreender e traduzir ideias em soluções gráficas que transmitam a essência de cada marca ou mensagem. Da identidade visual à direção de arte, cada trabalho é pensado para gerar impacto e deixar marca.",
-          "about.education": "Formação universitária em Design Gráfico",
-          "about.adobe": "Domínio avançado do Adobe Creative Cloud",
-          "about.communication": "Comunicação eficaz e pensamento visual",
-          "about.drawing": "Bom nível de desenho analógico",
-          "services.title": "Serviços",
-          "services.subtitle":
-            "Soluções de design adaptáveis, estéticas e originais",
-          "services.identity.title": "Identidade Visual",
-          "services.identity.desc":
-            "Criação de marcas, logotipos e sistemas de identidade visual coerentes e memoráveis.",
-          "services.editorial.title": "Design Editorial",
-          "services.editorial.desc":
-            "Design de publicações, revistas, livros e materiais impressos com alta qualidade tipográfica.",
-          "services.digital.title": "Design Digital",
-          "services.digital.desc":
-            "Peças para redes sociais, banners, apresentações e conteúdo digital impactante.",
-          "services.art.title": "Direção de Arte",
-          "services.art.desc":
-            "Conceituação e direção visual de projetos criativos com coerência estética.",
-          "services.packaging.title": "Embalagem",
-          "services.packaging.desc":
-            "Design de embalagens que comunicam a essência do produto.",
-          "services.branding.title": "Branding",
-          "services.branding.desc":
-            "Estratégia e construção de marca para conectar com seu público de forma autêntica.",
-          "portfolio.title": "Portfolio",
-          "portfolio.subtitle": "Trabalhos selecionados",
-          "portfolio.all": "Todos",
-          "portfolio.identity": "Identidade",
-          "portfolio.editorial": "Editorial",
-          "portfolio.digital": "Digital",
-          "portfolio.project1": "Identidade Corporativa",
-          "portfolio.project2": "Design Editorial",
-          "portfolio.project3": "Campanha Digital",
-          "portfolio.project4": "Embalagem",
-          "portfolio.project5": "Branding",
-          "portfolio.project6": "Direção de Arte",
-          "skills.title": "Habilidades",
-          "skills.subtitle": "Ferramentas e competências",
-          "skills.software": "Software",
-          "skills.soft": "Habilidades Interpessoais",
-          "skills.illustrator": "Adobe Illustrator",
-          "skills.photoshop": "Adobe Photoshop",
-          "skills.indesign": "Adobe InDesign",
-          "skills.office": "Microsoft Office",
-          "skills.creativity": "Criatividade",
-          "skills.communication": "Comunicação",
-          "skills.thinking": "Pensamento Visual",
-          "skills.empathy": "Empatia",
-          "skills.teamwork": "Trabalho em Equipe",
-          "contact.title": "Contato",
-          "contact.subtitle": "Tem um projeto em mente?",
-          "contact.description":
-            "Estou disponível para projetos freelance, colaborações e oportunidades de trabalho. Vamos conversar!",
-          "contact.name": "Nome",
-          "contact.email": "Email",
-          "contact.message": "Mensagem",
-          "contact.send": "Enviar mensagem",
-          "contact.sending": "Enviando...",
-          "contact.success": "Mensagem enviada!",
-          "contact.namePlaceholder": "Seu nome",
-          "contact.emailPlaceholder": "voce@email.com",
-          "contact.messagePlaceholder": "Conte-me sobre seu projeto...",
-          "footer.rights": "Todos os direitos reservados.",
-          "footer.made": "Projetado com",
-          "footer.by": "por Abril Studio",
-        },
-      };
+// ─── TRANSLATIONS ───
+const translations = {
+  es: {
+    "nav.about": "Sobre mí",
+    "nav.services": "Servicios",
+    "nav.portfolio": "Portfolio",
+    "nav.skills": "Habilidades",
+    "nav.contact": "Contacto",
 
+    "hero.tagline": "Diseñadora Gráfica",
+    "hero.description":
+      "Creando piezas y estrategias de comunicación visual que combinan creatividad, sensibilidad y funcionalidad.",
+    "hero.cta.portfolio": "Ver Portfolio",
+    "hero.cta.contact": "Contactar",
+    "hero.scroll": "Desplazar hacia abajo",
+
+    "about.title": "Sobre Abril Studio",
+    "about.subtitle": "Diseño que habla, emociona y construye sentido",
+    "about.description":
+      "En Abril Studio creemos que el diseño no es sólo estética. Es un lenguaje capaz de conectar, inspirar y transformar. Creamos piezas y estrategias de comunicación visual que combinan creatividad, sensibilidad y funcionalidad, adaptados a las necesidades de cada proyecto.",
+    "about.description2":
+      "Nuestra propuesta se basa en escuchar, comprender y traducir ideas en soluciones gráficas que transmitan la esencia de cada marca o mensaje. Desde la identidad visual hasta la dirección de arte, cada trabajo está pensado para generar impacto y dejar huella.",
+    "about.education": "Formación universitaria en Diseño Gráfico",
+    "about.adobe": "Manejo avanzado de Adobe Creative Cloud",
+    "about.communication": "Comunicación efectiva y pensamiento visual",
+    "about.drawing": "Buen nivel de dibujo analógico",
+
+    "services.title": "Servicios",
+    "services.subtitle":
+      "Soluciones de diseño adaptables, estéticas y originales",
+
+    "services.identity.title": "Identidad Visual",
+    "services.identity.desc":
+      "Creación de marcas, logotipos y sistemas de identidad visual coherentes y memorables.",
+
+    "services.editorial.title": "Diseño Editorial",
+    "services.editorial.desc":
+      "Diseño de publicaciones, revistas, libros y materiales impresos con alta calidad tipográfica.",
+
+    "services.print.title": "Diseño Print",
+    "services.print.desc":
+      "Piezas impresas como afiches, revistas, flyers y materiales físicos.",
+
+    "services.art.title": "Dirección de Arte",
+    "services.art.desc":
+      "Conceptualización y dirección visual de proyectos creativos con coherencia estética.",
+
+    "services.packaging.title": "Packaging",
+    "services.packaging.desc":
+      "Diseño de envases y embalajes que comunican la esencia del producto.",
+
+    "services.branding.title": "Branding",
+    "services.branding.desc":
+      "Estrategia y construcción de marca para conectar con tu audiencia de forma auténtica.",
+
+    "portfolio.title": "Portfolio",
+    "portfolio.subtitle": "Trabajos seleccionados",
+    "portfolio.all": "Todos",
+    "portfolio.identity": "Identidad",
+    "portfolio.editorial": "Editorial",
+    "portfolio.print": "Afiches",
+
+    "portfolio.project1": "Identidad Corporativa",
+    "portfolio.project2": "Diseño Editorial",
+    "portfolio.project3": "Campaña Digital",
+    "portfolio.project4": "Packaging",
+    "portfolio.project5": "Branding",
+    "portfolio.project6": "Dirección de Arte",
+
+    "skills.title": "Habilidades",
+    "skills.subtitle": "Herramientas y competencias",
+    "skills.software": "Software",
+    "skills.soft": "Habilidades Blandas",
+
+    "skills.illustrator": "Adobe Illustrator",
+    "skills.photoshop": "Adobe Photoshop",
+    "skills.indesign": "Adobe InDesign",
+    "skills.office": "Microsoft Office",
+
+    "skills.creativity": "Creatividad",
+    "skills.communication": "Comunicación",
+    "skills.thinking": "Pensamiento Visual",
+    "skills.empathy": "Empatía",
+    "skills.teamwork": "Trabajo en Equipo",
+
+    "contact.title": "Contacto",
+    "contact.subtitle": "¿Tenés un proyecto en mente?",
+    "contact.description":
+      "Estoy disponible para proyectos freelance, colaboraciones y oportunidades laborales. ¡Hablemos!",
+
+    "contact.name": "Nombre",
+    "contact.email": "Email",
+    "contact.message": "Mensaje",
+    "contact.send": "Enviar mensaje",
+    "contact.sending": "Enviando...",
+    "contact.success": "¡Mensaje enviado!",
+
+    "contact.namePlaceholder": "Tu nombre",
+    "contact.emailPlaceholder": "tu@email.com",
+    "contact.messagePlaceholder": "Contame sobre tu proyecto...",
+
+    "footer.rights": "Todos los derechos reservados.",
+    "footer.made": "Diseñado con",
+    "footer.by": "por Abril Studio",
+  },
+
+  en: {
+    "nav.about": "About",
+    "nav.services": "Services",
+    "nav.portfolio": "Portfolio",
+    "nav.skills": "Skills",
+    "nav.contact": "Contact",
+
+    "hero.tagline": "Graphic Designer",
+    "hero.description":
+      "Creating visual communication pieces and strategies that combine creativity, sensitivity and functionality.",
+    "hero.cta.portfolio": "View Portfolio",
+    "hero.cta.contact": "Get in Touch",
+    "hero.scroll": "Scroll down",
+
+    "about.title": "About Abril Studio",
+    "about.subtitle": "Design that speaks, moves and builds meaning",
+    "about.description":
+      "At Abril Studio we believe design is not just aesthetics. It's a language capable of connecting, inspiring and transforming. We create visual communication pieces and strategies that combine creativity, sensitivity and functionality, tailored to each project's needs.",
+    "about.description2":
+      "Our approach is based on listening, understanding and translating ideas into graphic solutions that convey the essence of each brand or message. From visual identity to art direction, every piece is designed to make an impact and leave a mark.",
+
+    "about.education": "University education in Graphic Design",
+    "about.adobe": "Advanced Adobe Creative Cloud skills",
+    "about.communication": "Effective communication and visual thinking",
+    "about.drawing": "Strong analog drawing skills",
+
+    "services.title": "Services",
+    "services.subtitle":
+      "Adaptable, aesthetic and original design solutions",
+
+    "services.identity.title": "Visual Identity",
+    "services.identity.desc":
+      "Creation of brands, logos and coherent, memorable visual identity systems.",
+
+    "services.editorial.title": "Editorial Design",
+    "services.editorial.desc":
+      "Design of publications, magazines, books and printed materials with high typographic quality.",
+
+    "services.print.title": "Print Design",
+    "services.print.desc":
+      "Printed pieces such as posters, magazines, flyers and physical materials.",
+
+    "services.art.title": "Art Direction",
+    "services.art.desc":
+      "Conceptualization and visual direction of creative projects with aesthetic coherence.",
+
+    "services.packaging.title": "Packaging",
+    "services.packaging.desc":
+      "Packaging design that communicates the essence of the product.",
+
+    "services.branding.title": "Branding",
+    "services.branding.desc":
+      "Brand strategy and construction to connect with your audience authentically.",
+
+    "portfolio.title": "Portfolio",
+    "portfolio.subtitle": "Selected works",
+    "portfolio.all": "All",
+    "portfolio.identity": "Identity",
+    "portfolio.editorial": "Editorial",
+    "portfolio.print": "Posters",
+
+    "portfolio.project1": "Corporate Identity",
+    "portfolio.project2": "Editorial Design",
+    "portfolio.project3": "Digital Campaign",
+    "portfolio.project4": "Packaging",
+    "portfolio.project5": "Branding",
+    "portfolio.project6": "Art Direction",
+
+    "skills.title": "Skills",
+    "skills.subtitle": "Tools and competencies",
+    "skills.software": "Software",
+    "skills.soft": "Soft Skills",
+
+    "skills.illustrator": "Adobe Illustrator",
+    "skills.photoshop": "Adobe Photoshop",
+    "skills.indesign": "Adobe InDesign",
+    "skills.office": "Microsoft Office",
+
+    "skills.creativity": "Creativity",
+    "skills.communication": "Communication",
+    "skills.thinking": "Visual Thinking",
+    "skills.empathy": "Empathy",
+    "skills.teamwork": "Teamwork",
+
+    "contact.title": "Contact",
+    "contact.subtitle": "Have a project in mind?",
+    "contact.description":
+      "I'm available for freelance projects, collaborations and job opportunities. Let's talk!",
+
+    "contact.name": "Name",
+    "contact.email": "Email",
+    "contact.message": "Message",
+    "contact.send": "Send message",
+    "contact.sending": "Sending...",
+    "contact.success": "Message sent!",
+
+    "contact.namePlaceholder": "Your name",
+    "contact.emailPlaceholder": "you@email.com",
+    "contact.messagePlaceholder": "Tell me about your project...",
+
+    "footer.rights": "All rights reserved.",
+    "footer.made": "Designed with",
+    "footer.by": "by Abril Studio",
+  },
+
+  pt: {
+    "nav.about": "Sobre mim",
+    "nav.services": "Serviços",
+    "nav.portfolio": "Portfolio",
+    "nav.skills": "Habilidades",
+    "nav.contact": "Contato",
+
+    "hero.tagline": "Designer Gráfica",
+    "hero.description":
+      "Criando peças e estratégias de comunicação visual que combinam criatividade, sensibilidade e funcionalidade.",
+    "hero.cta.portfolio": "Ver Portfolio",
+    "hero.cta.contact": "Entrar em Contato",
+    "hero.scroll": "Rolar para baixo",
+
+    "about.title": "Sobre Abril Studio",
+    "about.subtitle": "Design que fala, emociona e constrói sentido",
+    "about.description":
+      "Na Abril Studio acreditamos que o design não é apenas estética. É uma linguagem capaz de conectar, inspirar e transformar. Criamos peças e estratégias de comunicação visual que combinam criatividade, sensibilidade e funcionalidade, adaptadas às necessidades de cada projeto.",
+    "about.description2":
+      "Nossa proposta se baseia em ouvir, compreender e traduzir ideias em soluções gráficas que transmitam a essência de cada marca ou mensagem. Da identidade visual à direção de arte, cada trabalho é pensado para gerar impacto e deixar marca.",
+
+    "about.education": "Formação universitária em Design Gráfico",
+    "about.adobe": "Domínio avançado do Adobe Creative Cloud",
+    "about.communication": "Comunicação eficaz e pensamento visual",
+    "about.drawing": "Bom nível de desenho analógico",
+
+    "services.title": "Serviços",
+    "services.subtitle":
+      "Soluções de design adaptáveis, estéticas e originais",
+
+    "services.identity.title": "Identidade Visual",
+    "services.identity.desc":
+      "Criação de marcas, logotipos e sistemas de identidade visual coerentes e memoráveis.",
+
+    "services.editorial.title": "Design Editorial",
+    "services.editorial.desc":
+      "Design de publicações, revistas, livros e materiais impressos com alta qualidade tipográfica.",
+
+    "services.print.title": "Design Impressos",
+    "services.print.desc":
+      "Peças impressas como cartazes, revistas, flyers e materiais físicos.",
+
+    "services.art.title": "Direção de Arte",
+    "services.art.desc":
+      "Conceituação e direção visual de projetos criativos com coerência estética.",
+
+    "services.packaging.title": "Embalagem",
+    "services.packaging.desc":
+      "Design de embalagens que comunicam a essência do produto.",
+
+    "services.branding.title": "Branding",
+    "services.branding.desc":
+      "Estratégia e construção de marca para conectar com seu público de forma autêntica.",
+
+    "portfolio.title": "Portfolio",
+    "portfolio.subtitle": "Trabalhos selecionados",
+    "portfolio.all": "Todos",
+    "portfolio.identity": "Identidade",
+    "portfolio.editorial": "Editorial",
+    "portfolio.print": "Pôsteres",
+
+    "portfolio.project1": "Identidade Corporativa",
+    "portfolio.project2": "Design Editorial",
+    "portfolio.project3": "Campanha Digital",
+    "portfolio.project4": "Embalagem",
+    "portfolio.project5": "Branding",
+    "portfolio.project6": "Direção de Arte",
+
+    "skills.title": "Habilidades",
+    "skills.subtitle": "Ferramentas e competências",
+    "skills.software": "Software",
+    "skills.soft": "Habilidades Interpessoais",
+
+    "skills.illustrator": "Adobe Illustrator",
+    "skills.photoshop": "Adobe Photoshop",
+    "skills.indesign": "Adobe InDesign",
+    "skills.office": "Microsoft Office",
+
+    "skills.creativity": "Criatividade",
+    "skills.communication": "Comunicação",
+    "skills.thinking": "Pensamento Visual",
+    "skills.empathy": "Empatia",
+    "skills.teamwork": "Trabalho em Equipe",
+
+    "contact.title": "Contato",
+    "contact.subtitle": "Tem um projeto em mente?",
+    "contact.description":
+      "Estou disponível para projetos freelance, colaborações e oportunidades de trabalho. Vamos conversar!",
+
+    "contact.name": "Nome",
+    "contact.email": "Email",
+    "contact.message": "Mensagem",
+    "contact.send": "Enviar mensagem",
+    "contact.sending": "Enviando...",
+    "contact.success": "Mensagem enviada!",
+
+    "contact.namePlaceholder": "Seu nome",
+    "contact.emailPlaceholder": "voce@email.com",
+    "contact.messagePlaceholder": "Conte-me sobre seu projeto...",
+
+    "footer.rights": "Todos os direitos reservados.",
+    "footer.made": "Projetado com",
+    "footer.by": "por Abril Studio",
+  },
+};
       let currentLang = "es";
 
       function t(key) {
